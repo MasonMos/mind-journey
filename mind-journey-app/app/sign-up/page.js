@@ -30,7 +30,7 @@ export default function SignUpPage(){
         <AppBar position="static" sx={{backgroundColor: theme.palette.primary.dark}}>
             <Toolbar>
                 <Typography variant="h6" sx={{flexGrow: 1}}>
-                  {/* <Image src={SmallLogo} alt="Flasher.io Logo" width={25} sx={{textAlign: "center"}}/> */}
+                  mindjourney
                 </Typography>
                 <Button color="inherit" sx={{color: theme.palette.primary.contrastText}}>
                 <Link href="/sign-in" passHref>
@@ -48,7 +48,7 @@ export default function SignUpPage(){
             alignItems="center"
             sx={{textAlign: 'center', my: 4, gap: 15}}
             >
-            <Typography variant="h4" component="h1" gutterBottom>
+            <Typography variant="h4" component="h1" gutterBottom sx={{textAlign: 'center', gap: 15}}>
                 Sign Up
             </Typography>
             <SignUp />
