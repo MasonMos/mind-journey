@@ -28,7 +28,7 @@ const theme = createTheme({
 export default function SignInPage(){
     return(
     <Container maxWidth="100vw">
-        <AppBar position="static" sx={{backgroundColor: theme.palette.primary.dark, color: theme.palette.primary.contrastText}}>
+        <AppBar maxWidth="100vw" position="static" sx={{backgroundColor: theme.palette.primary.dark, color: theme.palette.primary.contrastText}}>
             <Toolbar>
                 <Typography variant="h6" sx={{flexGrow: 1}}>
                     {/* <Image src={SmallLogo} alt="Flasher.io Logo" width={25} sx={{textAlign: "center"}}/> */}
@@ -50,7 +50,7 @@ export default function SignInPage(){
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            sx={{textAlign: 'center', my: 4}}
+            sx={{textAlign: 'center', my: 4, gap: 15}}
             >
             <Typography variant="h4" component="h1" gutterBottom>
                 Sign In

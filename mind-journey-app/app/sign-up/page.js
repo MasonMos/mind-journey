@@ -46,7 +46,7 @@ export default function SignUpPage(){
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            sx={{textAlign: 'center', my: 4}}
+            sx={{textAlign: 'center', my: 4, gap: 15}}
             >
             <Typography variant="h4" component="h1" gutterBottom>
                 Sign Up
