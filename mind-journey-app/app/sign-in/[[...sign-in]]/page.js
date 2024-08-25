@@ -9,21 +9,22 @@ import Image from "next/image";
 
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      light: '#676fgd',
-      main: '#424769',
-      dark: '#2d3250',
-      contrastText: '#ffffff',
+    palette: {
+      primary: {
+        light: '#191E29',
+        main: '#132D46',
+        dark: '#01C38D',
+        contrastText: '#ffffff',
+      },
+      secondary: {
+        light: '#696E79',
+        main: '#696E79',
+        dark: '#696E79',
+        contrastText: '#ffffff',
+      },
     },
-    secondary: {
-      light: '#AD81A7',
-      main: '#6C5E82',
-      dark: '#2E365A',
-      contrastText: '#F8C19B',
-    },
-  },
-});
+  });
+  
 
 export default function SignInPage(){
     return(
