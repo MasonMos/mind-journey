@@ -10,3 +10,7 @@ export const config = {
     '/(api|trpc)(.*)',
   ],
 };
+
+
+// Clerk Documentation
+// https://clerk-docs-git-prettier-fixes.clerkpreview.com/quickstarts/nextjs/stable
