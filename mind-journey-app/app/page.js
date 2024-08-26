@@ -7,6 +7,7 @@ import { AppBar, Toolbar, Box, Button, Container, Typography, Grid  } from "@mui
 import { createTheme } from '@mui/material/styles';
 
 import { Jost } from "next/font/google";
+import Link from "next/link";
 
 const jost = Jost({
   subsets: ['latin'],
@@ -67,9 +68,62 @@ export default function Home() {
       </AppBar>
 
 
-      <Box sx={{backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-        
-      </Box>
+      <Grid margin={10}>
+        <Button>Introducing New AI Technology</Button>
+        <Box sx={{backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
+          <Typography variant="h2">Make life changing difference with your health</Typography>
+          <Typography variant="h7">Our AI - Driven mental health support is here to provide a lifeline, offering understanding, compassion, and guidance when you need it most.</Typography>
+        </Box>
+
+        <Button href="/features">Browse Features</Button>
+        <Button href="/pricing">Pricing Plans</Button>
+      </Grid>
+
+      <footer>
+          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr:"2" }} margin={10}> 
+            <Image src="/moon.svg" alt="logo" width="20" height="20" sx={{mr:"2"}} />
+            <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
+          </Box>
+
+
+          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }} margin={10}>
+            <Grid>
+              <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, ml: 1, mr: 2 }}>formed by a group of college kids trying to make it life</Typography>
+
+              <Link color="inherit" href="https://www.linkedin.com/in/ryantren/" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
+                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
+                ryan tran
+              </Link>
+
+              <Link color="inherit" href="https://www.linkedin.com/in/mason-moses/" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
+                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
+                mason moses
+              </Link>
+
+              <Link color="inherit" href="https://www.linkedin.com/in/jeremiah-dawson-2644982a2/" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
+                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
+                jeremiah dawson
+              </Link>
+
+              <Link color="inherit" href="https://www.linkedin.com/in/nabit-karowadia-848376224/" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
+                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
+                nabit karowadia
+              </Link>
+            </Grid>
+          </Box>
+
+          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }} margin={10}>
+            <Grid>
+              <Link color="inherit" href="/features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>features</Link>
+
+              <Link color="inherit" href="/pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Link>
+
+              <Link color="inherit" href="https://github.com/MasonMos/mind-journey" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>github</Link>
+
+              <Link color="inherit" href="/contact" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>contact</Link>
+            </Grid>
+          </Box>
+      </footer>
     </Container>
   );
 }
