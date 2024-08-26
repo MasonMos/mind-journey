@@ -260,10 +260,10 @@ export default function Home() {
           {/* Navigation Links Section */}
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginRight: 10, gap: 2 }}>
             {[
-              { name: 'features', path: '/features' },
-              { name: 'pricing', path: '/pricing' },
+              { name: 'features', path: 'http://localhost:3000/features' },
+              { name: 'pricing', path: 'http://localhost:3000/pricing' },
               { name: 'github', path: 'https://github.com/MasonMos/mind-journey' },
-              { name: 'contact', path: '/contact' }
+              { name: 'contact', path: 'http://localhost:3000/contact' }
             ].map(link => (
               <Link key={link.name} color="inherit" href={link.path} sx={{ color: 'white', fontFamily: jost.style.fontFamily, fontWeight: 'light', textTransform: 'none', marginBottom: 1, }}>
                 {link.name}
