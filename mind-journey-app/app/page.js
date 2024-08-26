@@ -6,7 +6,21 @@ import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@cle
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid  } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 
+import { Jost } from "next/font/google";
+
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+});
+
 const theme = createTheme({
+  typography: {
+    fontFamily: 'Jost !important',
+    fontWeightLight: 100, 
+    fontWeightRegular: 300, 
+    fontWeightMedium: 400, 
+    fontWeightBold: 500, 
+  },
   palette: {
     primary: {
       light: '#403838',
@@ -28,23 +42,23 @@ export default function Home() {
 
 
   return (
-    <Container maxWidth="100vw" style={{padding: 0}}>
+    <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
     <AppBar position="static" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
               <Image src="/moon.svg" alt="logo" width="20" height="20" />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText}}>mindjourney</Typography>
-            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, ml: 1}}>|</Typography>
-            <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
-            <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
+            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold}}>mindjourney</Typography>
+            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1}}>|</Typography>
+            <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
+            <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
           </Box>
           
 
           <SignedOut>
-            <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText, textTransform: 'none'}} style={{zIndex: 10000}}> sign in</Button>
-            <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText, textTransform: 'none'}} style={{zIndex: 10000}}> sign up</Button>
+            <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign in</Button>
+            <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign up</Button>
           </SignedOut>
           <SignedIn style={{zIndex: 10000}}>
             <UserButton style={{zIndex: 10000}}/>
@@ -54,7 +68,7 @@ export default function Home() {
 
 
       <Box sx={{backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-        {/* <InfiniteMovingCards></InfiniteMovingCards> */}
+        
       </Box>
     </Container>
   );

@@ -6,44 +6,59 @@ import { SignIn, SignUp } from '@clerk/nextjs'
 import Link from 'next/link'
 import { createTheme } from '@mui/material/styles';
 import Image from "next/image";
+import { Jost } from "next/font/google";
 
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+});
 
 const theme = createTheme({
-    palette: {
-      primary: {
-        light: '#403838',
-        main: '#181818',
-        dark: '#0E0D0D',
-        contrastText: '#ffffff',
-      },
-      secondary: {
-        light: '#A559D2',
-        main: '#7714B0',
-        dark: '#5B0B89',
-        contrastText: '#F6F4DC',
-      },
+  typography: {
+    fontFamily: 'Jost !important',
+    fontWeightLight: 100, 
+    fontWeightRegular: 300, 
+    fontWeightMedium: 400, 
+    fontWeightBold: 500, 
+  },
+  palette: {
+    primary: {
+      light: '#403838',
+      main: '#181818',
+      dark: '#0E0D0D',
+      contrastText: '#ffffff',
     },
-  });
+    secondary: {
+      light: '#A559D2',
+      main: '#7714B0',
+      dark: '#5B0B89',
+      contrastText: '#F6F4DC',
+    },
+  },
+});
   
 
 export default function SignInPage(){
     return(
     <Container maxWidth="100vw">
-        <AppBar maxWidth="100vw" position="static" sx={{backgroundColor: theme.palette.primary.dark, color: theme.palette.primary.contrastText}}>
-            <Toolbar>
-                <Typography variant="h6" sx={{flexGrow: 1}}>
-                    mindjourney
-                </Typography>
-                <Button color="inherit" sx={{color: theme.palette.primary.contrastText}}>
-                <Link href="/login" passHref/>
-                    Login
-                </Button>
-                <Button color="inherit" sx={{color: theme.palette.primary.contrastText}}>
-                <Link href="/sign-up" passHref/>
-                    Sign Up
-                </Button>
-            </Toolbar>
-        </AppBar>
+        <AppBar position="static" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
+        <Toolbar>
+          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
+              <Image src="/moon.svg" alt="logo" width="20" height="20" />
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+            <Link variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold}} href="/">mindjourney</Link>
+            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1}}>|</Typography>
+            <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
+            <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
+          </Box>
+          
+            <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign in</Button>
+            <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign up</Button>
+ 
+        </Toolbar>
+      </AppBar>
+
 
 
         <Box
@@ -53,9 +68,12 @@ export default function SignInPage(){
             alignItems="center"
             sx={{textAlign: 'center', my: 4, gap: 15}}
             >
-            <Typography variant="h4" component="h1" gutterBottom sx={{textAlign: 'center', gap: 15}}>
-                Sign In
+            <Box sx={{filter: 'invert(1)'}}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{textAlign: 'center', gap: 10}}>
+                sign into mindjourney
             </Typography>
+            <Image src="/moon.svg" alt="logo" width="20" height="20" />
+            </Box>
             <SignIn />
         </Box>
     </Container>
