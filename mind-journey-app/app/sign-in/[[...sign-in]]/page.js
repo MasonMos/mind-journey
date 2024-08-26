@@ -11,16 +11,16 @@ import Image from "next/image";
 const theme = createTheme({
     palette: {
       primary: {
-        light: '#191E29',
-        main: '#132D46',
-        dark: '#01C38D',
+        light: '#403838',
+        main: '#181818',
+        dark: '#0E0D0D',
         contrastText: '#ffffff',
       },
       secondary: {
-        light: '#696E79',
-        main: '#696E79',
-        dark: '#696E79',
-        contrastText: '#ffffff',
+        light: '#A559D2',
+        main: '#7714B0',
+        dark: '#5B0B89',
+        contrastText: '#F6F4DC',
       },
     },
   });

@@ -10,19 +10,20 @@ import Image from "next/image";
 const theme = createTheme({
   palette: {
     primary: {
-      light: '#676fgd',
-      main: '#424769',
-      dark: '#2d3250',
+      light: '#403838',
+      main: '#181818',
+      dark: '#0E0D0D',
       contrastText: '#ffffff',
     },
     secondary: {
-      light: '#AD81A7',
-      main: '#6C5E82',
-      dark: '#2E365A',
-      contrastText: '#F8C19B',
+      light: '#A559D2',
+      main: '#7714B0',
+      dark: '#5B0B89',
+      contrastText: '#F6F4DC',
     },
   },
 });
+
 
 export default function SignUpPage(){
     return(
