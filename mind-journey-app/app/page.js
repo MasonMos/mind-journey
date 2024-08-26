@@ -181,6 +181,7 @@ export default function Home() {
 
       {/* Waitlist Component will go here */}
       <Grid margin={10}>
+        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Join the Waitlist</Typography>
         {/* waitlist shit will go here */}
       </Grid>
 
