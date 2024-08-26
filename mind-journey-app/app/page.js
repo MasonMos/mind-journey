@@ -166,7 +166,7 @@ export default function Home() {
                 duration: 0.25,
                 ease: [0.4, 0.0, 0.2, 1],
               }}
-              className="text-5xl px-5 md:text-4xl lg:text-5xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
+              className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
             >
               Make a {" "} <Highlight className="text-white dark:text-white">life changing</Highlight> <br /> difference with<br /> your health
             </motion.h1>
@@ -175,8 +175,8 @@ export default function Home() {
           <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
         </Box>
 
-        <Button href="/features" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText}}>Browse Features</Button>
-        <Button href="/pricing" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText}}>Pricing Plans</Button>
+        <Button href="/features" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2}}>Browse Features</Button>
+        <Button href="/pricing" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2}}>Pricing Plans</Button>
       </Grid>
 
       {/* Waitlist Component will go here */}
