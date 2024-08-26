@@ -6,7 +6,7 @@ import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@cle
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid  } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 
-// import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+
 
 
 const theme = createTheme({
@@ -32,12 +32,15 @@ export default function Home() {
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}}>
-    <AppBar position="static" sx={{backgroundColor: theme.palette.primary.dark, color:theme.palette.primary.contrastText}}>
+    <AppBar position="static" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
         <Toolbar>
+          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
+              <Image src="/moon.svg" alt="logo" width="20" height="20" />
+          </Box>
           <Typography variant="h6" style={{flexGrow: 1}} sx={{color:theme.palette.primary.contrastText}}>mindjourney</Typography>
           <SignedOut>
-            <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.light,}} style={{zIndex: 10000}}> Login</Button>
-            <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.light}} style={{zIndex: 10000}}> Sign Up</Button>
+            <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText,}} style={{zIndex: 10000}}> Sign In</Button>
+            <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText}} style={{zIndex: 10000}}> Sign Up</Button>
           </SignedOut>
           <SignedIn style={{zIndex: 10000}}>
             <UserButton style={{zIndex: 10000}}/>
