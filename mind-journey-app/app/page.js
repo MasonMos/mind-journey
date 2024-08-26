@@ -11,6 +11,7 @@ import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity car
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
@@ -148,10 +149,16 @@ export default function Home() {
 
       {/* Hero Statement */}
       <Grid margin={10}>
-        <Button sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, textTransform: 'none'}}>Introducing New AI Technology</Button>
-        <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-          {/* <Typography variant="h2">Make a life changing<br /> difference with<br /> your health</Typography> */}
 
+      <HoverBorderGradient
+        containerClassName="rounded-full"
+        as="button"
+        className="text-white flex items-center space-x-4"
+      >
+        <span>Introducing New AI Technology</span>
+      </HoverBorderGradient>
+
+        <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
           <HeroHighlight>
             <motion.h1
               initial={{
@@ -175,8 +182,23 @@ export default function Home() {
           <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
         </Box>
 
-        <Button href="/features" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2, textTransform: 'none'}}>Browse Features</Button>
-        <Button href="/pricing" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2, textTransform: 'none'}}>Pricing Plans</Button>
+        <Box marginTop={2} sx={{ display: 'flex', alignItems: 'left', justifyContent: 'left', gap: 2 }}>
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="text-white flex items-center space-x-4"
+          >
+            <Link href="/features">Browse Features</Link>
+          </HoverBorderGradient>
+
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="text-white flex items-center space-x-4"
+          >
+            <Link href="/pricing">Pricing Plans</Link>
+          </HoverBorderGradient>
+        </Box>
       </Grid>
 
       {/* Waitlist Component will go here */}
@@ -198,8 +220,6 @@ export default function Home() {
       </Grid>
 
       {/* need to work on foot to match the styling on figma */}
-    
-
       <footer>
         <Divider variant="middle" sx={{ backgroundColor: 'white' }} />
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', color: theme.palette.secondary.contrastText }}>
@@ -233,7 +253,7 @@ export default function Home() {
           </Box>
           
           {/* Navigation Links Section */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginRight: 10, gap: 2 }}>
             {[
               { name: 'features', path: '/features' },
               { name: 'pricing', path: '/pricing' },
