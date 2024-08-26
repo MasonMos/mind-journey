@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid  } from "@mui/material";
+import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 
 import { Jost } from "next/font/google";
@@ -79,7 +80,10 @@ export default function Home() {
         <Button href="/pricing">Pricing Plans</Button>
       </Grid>
 
+
+      {/* need to work on foot to match the styling on figma */}
       <footer>
+        <Divider variant="middle" color="white" />
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr:"2" }} margin={10}> 
             <Image src="/moon.svg" alt="logo" width="20" height="20" sx={{mr:"2"}} />
             <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
