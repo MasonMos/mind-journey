@@ -88,7 +88,7 @@ export default function Home() {
 
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }} margin={10}>
             <Grid>
-              <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, ml: 1, mr: 2 }}>formed by a group of college kids trying to make it life</Typography>
+              <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, ml: 1, mr: 2 }}>formed by a group of college kids trying to make it through life</Typography>
 
               <Link color="inherit" href="https://www.linkedin.com/in/ryantren/" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
                 <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
