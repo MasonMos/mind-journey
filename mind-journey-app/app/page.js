@@ -148,7 +148,7 @@ export default function Home() {
 
       {/* Hero Statement */}
       <Grid margin={10}>
-        <Button sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText}}>Introducing New AI Technology</Button>
+        <Button sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, textTransform: 'none'}}>Introducing New AI Technology</Button>
         <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
           {/* <Typography variant="h2">Make a life changing<br /> difference with<br /> your health</Typography> */}
 
@@ -175,13 +175,13 @@ export default function Home() {
           <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
         </Box>
 
-        <Button href="/features" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2}}>Browse Features</Button>
-        <Button href="/pricing" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2}}>Pricing Plans</Button>
+        <Button href="/features" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2, textTransform: 'none'}}>Browse Features</Button>
+        <Button href="/pricing" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText, marginTop: 2, textTransform: 'none'}}>Pricing Plans</Button>
       </Grid>
 
       {/* Waitlist Component will go here */}
       <Grid margin={10}>
-        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Join the Waitlist</Typography>
+        <Typography variant="h4" color={theme.palette.secondary.contrastText} sx={{position: "flex", alignContent: "center", justifyContent: "center"}}>Join the Waitlist</Typography>
         {/* waitlist shit will go here */}
       </Grid>
 
@@ -198,52 +198,56 @@ export default function Home() {
       </Grid>
 
       {/* need to work on foot to match the styling on figma */}
+    
+
       <footer>
-        <Divider variant="middle" color="white" />
-          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr:"2" }} margin={10}> 
+        <Divider variant="middle" sx={{ backgroundColor: 'white' }} />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', color: theme.palette.secondary.contrastText }}>
+          
+          {/* Logo Section */}
+          <Box sx={{ display: 'column', alignItems: 'center', filter: 'invert(1)', mr:"2" }} margin={10}> 
             <Image src="/moon.svg" alt="logo" width="20" height="20" sx={{mr:"2"}} />
-            <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
+            <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2, filter: "invert(1)" }}>mindjourney</Typography>
+
+            {/* Description Section */}
+            <Box marginBottom={2}>
+              <Typography variant="body1" sx={{ fontFamily: jost.style.fontFamily, fontWeight: 'regular', textAlign: 'center', color: "black" }}>
+                formed by a group of college kids trying to make it through life
+              </Typography>
+            </Box>
+
+            {/* Social Links Section */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', filter: "invert(1)" }}>
+              {[
+                { name: ' ryan tran', url: 'https://www.linkedin.com/in/ryantren/' },
+                { name: ' mason moses', url: 'https://www.linkedin.com/in/mason-moses/' },
+                { name: ' jeremiah dawson', url: 'https://www.linkedin.com/in/jeremiah-dawson-2644982a2/' },
+                { name: ' nabit karowadia', url: 'https://www.linkedin.com/in/nabit-karowadia-848376224/' }
+              ].map(link => (
+                <Link key={link.name} color="inherit" href={link.url} sx={{color: theme.palette.secondary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: 'light', textTransform: 'none', marginBottom: 1, display: 'flex', alignItems: 'center' }}>
+                  <Image src="/linkedin.svg" alt="logo" width="18" height="18" style={{ marginRight: '8px', filter: "invert(1)" }} />
+                  {link.name}
+                </Link>
+              ))}
+            </Box>
           </Box>
-
-
-          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }} margin={10}>
-            <Grid>
-              <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, ml: 1, mr: 2 }}>formed by a group of college kids trying to make it through life</Typography>
-
-              <Link color="inherit" href="https://www.linkedin.com/in/ryantren/" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
-                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
-                ryan tran
+          
+          {/* Navigation Links Section */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            {[
+              { name: 'features', path: '/features' },
+              { name: 'pricing', path: '/pricing' },
+              { name: 'github', path: 'https://github.com/MasonMos/mind-journey' },
+              { name: 'contact', path: '/contact' }
+            ].map(link => (
+              <Link key={link.name} color="inherit" href={link.path} sx={{ color: 'white', fontFamily: jost.style.fontFamily, fontWeight: 'light', textTransform: 'none', marginBottom: 1, }}>
+                {link.name}
               </Link>
-
-              <Link color="inherit" href="https://www.linkedin.com/in/mason-moses/" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
-                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
-                mason moses
-              </Link>
-
-              <Link color="inherit" href="https://www.linkedin.com/in/jeremiah-dawson-2644982a2/" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
-                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
-                jeremiah dawson
-              </Link>
-
-              <Link color="inherit" href="https://www.linkedin.com/in/nabit-karowadia-848376224/" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>
-                <Image src="/linkedin.svg" alt="logo" width="20" height="20" mr="2" />
-                nabit karowadia
-              </Link>
-            </Grid>
+            ))}
           </Box>
-
-          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }} margin={10}>
-            <Grid>
-              <Link color="inherit" href="/features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>features</Link>
-
-              <Link color="inherit" href="/pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Link>
-
-              <Link color="inherit" href="https://github.com/MasonMos/mind-journey" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>github</Link>
-
-              <Link color="inherit" href="/contact" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, textTransform: 'none'}} style={{zIndex: 10000}}>contact</Link>
-            </Grid>
-          </Box>
+        </Box>
       </footer>
+
     </Container>
   );
 }
