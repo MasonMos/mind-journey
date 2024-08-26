@@ -12,6 +12,8 @@ import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
@@ -146,6 +148,9 @@ export default function Home() {
           </SignedIn>
         </Toolbar>
       </AppBar>
+
+      <ShootingStars />
+      <StarsBackground />
 
       {/* Hero Statement */}
       <Grid margin={10}>
