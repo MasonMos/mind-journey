@@ -152,7 +152,7 @@ export default function Home() {
         <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
           {/* <Typography variant="h2">Make a life changing<br /> difference with<br /> your health</Typography> */}
 
-          <HeroHighlight  className="bg-transparent" style={{ background: 'transparent', backgroundColor: 'transparent' }}>
+          <HeroHighlight>
             <motion.h1
               initial={{
                 opacity: 0,
@@ -163,11 +163,10 @@ export default function Home() {
                 y: [20, -5, 0],
               }}
               transition={{
-                duration: 0.5,
+                duration: 0.25,
                 ease: [0.4, 0.0, 0.2, 1],
               }}
-              className="text-2xl px-4 md:text-4xl lg:text-5xl font-regular text-neutral-700 text-black light:text-black max-w-4xl leading-relaxed lg:leading-snug mx-auto"
-              style={{ background: 'transparent', backgroundColor: 'transparent' }}
+              className="text-5xl px-5 md:text-4xl lg:text-5xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
             >
               Make a {" "} <Highlight className="text-white dark:text-white">life changing</Highlight> <br /> difference with<br /> your health
             </motion.h1>

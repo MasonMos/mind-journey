@@ -1,10 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
-.hero-highlight {
-  background: none !important; /* Ensure no background color */
-}
 
 :root {
     --foreground-rgb: 105, 110, 121;
