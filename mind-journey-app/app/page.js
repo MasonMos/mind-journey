@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
-    <AppBar position="static" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
+      <AppBar position="static" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
               <Image src="/moon.svg" alt="logo" width="20" height="20" />
