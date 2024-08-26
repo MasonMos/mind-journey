@@ -3,9 +3,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
-import { AppBar, Toolbar, Box, Button, Container, Typography, Grid  } from "@mui/material";
+import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
+
+import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
+import { motion } from "framer-motion";
+import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
@@ -39,9 +44,82 @@ const theme = createTheme({
   },
 });
 
+//aceternity features
+const content = [
+  {
+    title: "AI-Powered Emotional Check-Ins",
+    description:
+      "Receive regular emotional check-ins from our AI, designed to understand your feelings and provide immediate, tailored responses. Whether you're feeling anxious, stressed, or down, our AI is here to listen and offer the right guidance.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
+        Demo GiF/Loom Video Goes Here
+      </div>
+    ),
+  },
+  {
+    title: "Personalized Mental Health Plans",
+    description:
+      "Get access to customized mental health plans based on your unique needs and goals. Our AI analyzes your interactions and feedback to create a plan that evolves with you, ensuring you always have the right tools and support.",
+    content: (
+      <div className="h-full w-full  flex items-center justify-center text-white">
+        <Image
+          src="/linear.webp"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Guided Meditation and Relaxation Techniques",
+    description:
+      "Explore a library of guided meditations and relaxation exercises that help reduce stress and promote mindfulness. Tailored to your emotional state, these sessions provide a calming experience to help you manage daily challenges.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
+        demo goes here
+      </div>
+    ),
+  },
+  {
+    title: "24/7 Emotional Support",
+    description:
+      "Experience peace of mind knowing that support is available whenever you need it. Our AI-driven service provides round-the-clock emotional assistance, offering immediate comfort and practical advice during difficult times.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
+        demo goes here
+      </div>
+    ),
+  },
+];
+
+//aceternity pricing cards
+export const pricingCards = [
+  {
+    title: "Basic Support (Free)",
+    description:
+      "Access to introductory mental health resources. Limited AI-guided self-help tools. Community support through forums.",
+    link: "/pricing",
+  },
+  {
+    title: "Enhanced Care ($5/month)",
+    description:
+      "Everything in Basic Support. Personalized AI mental health assessments. Access to guided meditation and relaxation techniques. Monthly progress tracking and reports.",
+    link: "/pricing",
+  },
+  {
+    title: "Premium Wellness ($10/month)",
+    description:
+      "Everything in Enhanced Care. 24/7 access to AI-driven emotional support. Customized mental health plans tailored to your needs. Exclusive content and workshops from mental health professionals.",
+    link: "/pricing",
+  },
+];
+
+
+
 export default function Home() {
   const {isLoading, isSignedIn, user} = useUser()
-
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
@@ -50,6 +128,7 @@ export default function Home() {
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
               <Image src="/moon.svg" alt="logo" width="20" height="20" />
           </Box>
+
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
             <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
             <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
@@ -57,7 +136,6 @@ export default function Home() {
             <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
           </Box>
           
-
           <SignedOut>
             <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign in</Button>
             <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign up</Button>
@@ -68,18 +146,56 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-
+      {/* Hero Statement */}
       <Grid margin={10}>
-        <Button>Introducing New AI Technology</Button>
-        <Box sx={{backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-          <Typography variant="h2">Make life changing difference with your health</Typography>
-          <Typography variant="h7">Our AI - Driven mental health support is here to provide a lifeline, offering understanding, compassion, and guidance when you need it most.</Typography>
+        <Button sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText}}>Introducing New AI Technology</Button>
+        <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
+          {/* <Typography variant="h2">Make a life changing<br /> difference with<br /> your health</Typography> */}
+
+          <HeroHighlight  className="bg-transparent" style={{ background: 'transparent', backgroundColor: 'transparent' }}>
+            <motion.h1
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: [20, -5, 0],
+              }}
+              transition={{
+                duration: 0.5,
+                ease: [0.4, 0.0, 0.2, 1],
+              }}
+              className="text-2xl px-4 md:text-4xl lg:text-5xl font-regular text-neutral-700 text-black light:text-black max-w-4xl leading-relaxed lg:leading-snug mx-auto"
+              style={{ background: 'transparent', backgroundColor: 'transparent' }}
+            >
+              Make a {" "} <Highlight className="text-white dark:text-white">life changing</Highlight> <br /> difference with<br /> your health
+            </motion.h1>
+          </HeroHighlight>
+
+          <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
         </Box>
 
-        <Button href="/features">Browse Features</Button>
-        <Button href="/pricing">Pricing Plans</Button>
+        <Button href="/features" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText}}>Browse Features</Button>
+        <Button href="/pricing" sx={{border: "1px solid white", borderRadius: 25, color: theme.palette.primary.contrastText}}>Pricing Plans</Button>
       </Grid>
 
+      {/* Waitlist Component will go here */}
+      <Grid margin={10}>
+        {/* waitlist shit will go here */}
+      </Grid>
+
+      {/* Features Section */}
+      <Grid margin={10} spacing={10} gap="15" ml="10">
+        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Features</Typography>
+        <StickyScroll content={content} />
+      </Grid>
+
+      {/* Pricing Card Preview */}
+      <Grid margin={10} spacing={10} gap="15" ml="10">
+        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Pricing</Typography>
+        <HoverEffect items={pricingCards} sx={{color: theme.palette.secondary.contrastText, backgroundColor: theme.palette.primary.dark}}/>
+      </Grid>
 
       {/* need to work on foot to match the styling on figma */}
       <footer>
