@@ -149,8 +149,6 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-      <ShootingStars />
-      <StarsBackground />
 
       <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
           <HeroHighlight>

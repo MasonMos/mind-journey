@@ -133,7 +133,7 @@ export default function Home() {
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-          <Link variant="h6" href="/" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Link>
+            <Link variant="h6" href="/" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Link>
             <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
             <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
             <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
@@ -167,98 +167,9 @@ export default function Home() {
               }}
               className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
             >
-              {" "} <Highlight className="text-white dark:text-white">Pricing</Highlight> Options
+              {" "} <Highlight className="text-white dark:text-white">Contact</Highlight>
             </motion.h1>
           </HeroHighlight>
-        </Box>
-
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 0,
-                margin: '0 auto', // This centers the Box horizontally
-                width: '50vw', // Adjust this for responsiveness; 50vw makes it 50% of the viewport width
-                maxWidth: '800px', // Optional: Set a max-width for better readability on larger screens
-                textAlign: 'center',
-                color: theme.palette.primary.contrastText,
-                
-            }}
-        >
-            <Typography
-                variant="h3"
-                sx={{
-                    fontFamily: jost.style.fontFamily,
-                    fontWeight: theme.typography.fontWeightBold,
-                    color: theme.palette.primary.contrastText,
-                    textAlign: 'center',
-                    position: 'flex',
-                }}
-            >
-              Terms and Conditions for Mindjorney Memberships
-            </Typography>
-
-            <Typography variant="body1" sx={{ marginBottom: 8 }}>
-                Effective Date: [8/26/2024]
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                1. Introduction
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                Welcome to Mindjorney! By subscribing to our membership plans, you agree to these terms and conditions. Please read them carefully.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                2. Membership Plans
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - We offer different membership plans, each with its own features and benefits. Memberships are billed on a monthly basis, with the option to upgrade or downgrade at any time.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                3. Billing and Payments
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - Payments for membership plans are processed through our secure payment gateway. Your membership will automatically renew each month unless you cancel it. If payment is unsuccessful, your membership will be suspended until payment is received.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                4. Cancellations and Refunds
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - You can cancel your membership at any time through your account settings. Upon cancellation, your membership benefits will continue until the end of the current billing cycle. We do not offer refunds for partial months.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                5. Use of Services
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - Our services are for personal use only. Sharing accounts or access with others is not allowed. You agree to use Mindjorney responsibly and in accordance with all applicable laws and regulations.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                6. Privacy
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - We are committed to protecting your privacy. Please review our Privacy Policy to understand how we handle your personal information.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                7. Changes to Terms
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - We may update these terms and conditions from time to time. Changes will be effective immediately upon posting on our website. By continuing to use our services after changes are made, you agree to the revised terms.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                8. Contact Us
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 25 }}>
-                - If you have any questions or concerns about these terms and conditions, please contact us at [insert contact email].
-            </Typography>
         </Box>
 
       {/* need to work on foot to match the styling on figma */}
