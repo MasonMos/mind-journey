@@ -9,13 +9,9 @@ import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from 
 import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 
-import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
+
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
