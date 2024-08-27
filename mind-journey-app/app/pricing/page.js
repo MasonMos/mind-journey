@@ -1,5 +1,7 @@
 'use client';
 
+import "../other.css";
+
 import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
@@ -7,13 +9,11 @@ import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from 
 import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 
-import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
+// import { IconAppWindow } from "@tabler/icons-react";
+
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
@@ -149,28 +149,101 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-
       <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-          <HeroHighlight>
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: [20, -5, 0],
-              }}
-              transition={{
-                duration: 0.25,
-                ease: [0.4, 0.0, 0.2, 1],
-              }}
-              className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
-            >
-              {" "} <Highlight className="text-white dark:text-white">Pricing</Highlight> Options
-            </motion.h1>
-          </HeroHighlight>
-        </Box>
+          <Typography variant="h2" sx={{postion: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: 10}}>Pricing Options</Typography>
+      </Box>
+        
+
+        {/* pricing cards */}
+        <Grid container sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center", justifyContent: "center"}}>
+          <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
+          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
+            <Image
+              src={`/public/moonpricetwo.svg`}
+              alt="jordans"
+              height="400"
+              width="400"
+              className="object-contain"
+            />
+            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+              Basic <br />
+            </p>
+    
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                Access to introductory mental health resources. <br />
+                Limited AI-guided self-help tools. <br />
+                Community support through forums. <br />
+            </p>
+            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800">
+              <span>Buy now </span>
+              <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
+                Free
+              </span>
+            </button>
+
+          </BackgroundGradient>
+          </Grid>
+
+          <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
+          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
+            <Image
+              src={`/public/moonpricetwo.svg`}
+              alt="jordans"
+              height="400"
+              width="400"
+              className="object-contain"
+            />
+            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+              Enhanced<br />
+            </p>
+    
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            Everything in Basic Support. <br />
+            Personalized AI mental health assessments. <br />
+            Access to guided meditation and relaxation techniques. <br />
+            Monthly progress tracking and reports. <br />
+            </p>
+            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800">
+              <span>Buy now </span>
+              <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
+                5$
+              </span>
+            </button>
+
+          </BackgroundGradient>
+          </Grid>
+
+
+          <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
+          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
+            <Image
+              src={`/public/moonpricetwo.svg`}
+              alt="jordans"
+              height="400"
+              width="400"
+              className="object-contain"
+            />
+            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+              Premium <br />
+            </p>
+    
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Everything in Enhanced Care. 24/7 access to AI-driven emotional support. <br />
+              Customized mental health plans tailored to your needs. <br />
+              Exclusive content and workshops from mental health professionals. <br />
+            </p>
+            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800">
+              <span>Buy now </span>
+              <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
+                10$
+              </span>
+            </button>
+
+          </BackgroundGradient>
+          </Grid>
+        </Grid>
+
+      
 
         <Box
             sx={{

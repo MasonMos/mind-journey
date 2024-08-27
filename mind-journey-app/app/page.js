@@ -1,5 +1,7 @@
 'use client';
 
+import "./globals.css";
+
 import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
@@ -100,19 +102,19 @@ const content = [
 //aceternity pricing cards
 export const pricingCards = [
   {
-    title: "Basic Support (Free)",
+    title: "Basic Plan (Free)",
     description:
       "Access to introductory mental health resources. Limited AI-guided self-help tools. Community support through forums.",
     link: "/pricing",
   },
   {
-    title: "Enhanced Care ($5/month)",
+    title: "Enhanced Plan ($5/month)",
     description:
       "Everything in Basic Support. Personalized AI mental health assessments. Access to guided meditation and relaxation techniques. Monthly progress tracking and reports.",
     link: "/pricing",
   },
   {
-    title: "Premium Wellness ($10/month)",
+    title: "Premium Plan ($10/month)",
     description:
       "Everything in Enhanced Care. 24/7 access to AI-driven emotional support. Customized mental health plans tailored to your needs. Exclusive content and workshops from mental health professionals.",
     link: "/pricing",

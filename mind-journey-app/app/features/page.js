@@ -1,5 +1,7 @@
 'use client';
 
+import "../other.css";
+
 import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
@@ -151,26 +153,26 @@ export default function Home() {
 
 
       <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-          <HeroHighlight>
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: [20, -5, 0],
-              }}
-              transition={{
-                duration: 0.25,
-                ease: [0.4, 0.0, 0.2, 1],
-              }}
-              className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
-            >
-              {" "} <Highlight className="text-white dark:text-white">Features</Highlight>
-            </motion.h1>
-          </HeroHighlight>
-        </Box>
+        <HeroHighlight>
+          <motion.h1
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: [20, -5, 0],
+            }}
+            transition={{
+              duration: 0.25,
+              ease: [0.4, 0.0, 0.2, 1],
+            }}
+            className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
+          >
+            {" "} <Highlight className="text-white dark:text-white">Features</Highlight>
+          </motion.h1>
+        </HeroHighlight>
+      </Box>
 
       {/* need to work on foot to match the styling on figma */}
       <footer>
