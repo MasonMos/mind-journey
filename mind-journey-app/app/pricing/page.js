@@ -159,8 +159,8 @@ export default function Home() {
           <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
           <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
             <Image
-              src={`/public/moonpricetwo.svg`}
-              alt="jordans"
+              src={`/moonpriceone.webp`}
+              alt="moon-one"
               height="400"
               width="400"
               className="object-contain"
@@ -187,8 +187,8 @@ export default function Home() {
           <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
           <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
             <Image
-              src={`/public/moonpricetwo.svg`}
-              alt="jordans"
+              src={`/moonpricetwo.webp`}
+              alt="moon-two"
               height="400"
               width="400"
               className="object-contain"
@@ -217,8 +217,8 @@ export default function Home() {
           <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
           <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
             <Image
-              src={`/public/moonpricetwo.svg`}
-              alt="jordans"
+              src={`/moonpricethree.webp`}
+              alt="moon-three"
               height="400"
               width="400"
               className="object-contain"
