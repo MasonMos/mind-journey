@@ -1,7 +1,5 @@
 'use client';
 
-import "./globals.css";
-
 import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
@@ -102,19 +100,19 @@ const content = [
 //aceternity pricing cards
 export const pricingCards = [
   {
-    title: "Basic Plan (Free)",
+    title: "Basic Support (Free)",
     description:
       "Access to introductory mental health resources. Limited AI-guided self-help tools. Community support through forums.",
     link: "/pricing",
   },
   {
-    title: "Enhanced Plan ($5/month)",
+    title: "Enhanced Care ($5/month)",
     description:
       "Everything in Basic Support. Personalized AI mental health assessments. Access to guided meditation and relaxation techniques. Monthly progress tracking and reports.",
     link: "/pricing",
   },
   {
-    title: "Premium Plan ($10/month)",
+    title: "Premium Wellness ($10/month)",
     description:
       "Everything in Enhanced Care. 24/7 access to AI-driven emotional support. Customized mental health plans tailored to your needs. Exclusive content and workshops from mental health professionals.",
     link: "/pricing",
@@ -135,7 +133,7 @@ export default function Home() {
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
+            <Link variant="h6" href="/" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Link>
             <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
             <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
             <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
@@ -151,21 +149,8 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-      <ShootingStars />
-      <StarsBackground />
 
-      {/* Hero Statement */}
-      <Grid margin={10}>
-
-      <HoverBorderGradient
-        containerClassName="rounded-full"
-        as="button"
-        className="text-white flex items-center space-x-4"
-      >
-        <span>Introducing New AI Technology</span>
-      </HoverBorderGradient>
-
-        <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
+      <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
           <HeroHighlight>
             <motion.h1
               initial={{
@@ -182,49 +167,10 @@ export default function Home() {
               }}
               className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
             >
-              Make a {" "} <Highlight className="text-white dark:text-white">life changing</Highlight> <br /> difference with<br /> your health
+              {" "} <Highlight className="text-white dark:text-white">Contact</Highlight>
             </motion.h1>
           </HeroHighlight>
-
-          <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
         </Box>
-
-        <Box marginTop={2} sx={{ display: 'flex', alignItems: 'left', justifyContent: 'left', gap: 2 }}>
-          <HoverBorderGradient
-            containerClassName="rounded-full"
-            as="button"
-            className="text-white flex items-center space-x-4"
-          >
-            <Link href="/features">Browse Features</Link>
-          </HoverBorderGradient>
-
-          <HoverBorderGradient
-            containerClassName="rounded-full"
-            as="button"
-            className="text-white flex items-center space-x-4"
-          >
-            <Link href="/pricing">Pricing Plans</Link>
-          </HoverBorderGradient>
-        </Box>
-      </Grid>
-
-      {/* Waitlist Component will go here */}
-      <Grid margin={10}>
-        <Typography variant="h4" color={theme.palette.secondary.contrastText} sx={{position: "flex", alignContent: "center", justifyContent: "center"}}>Join the Waitlist</Typography>
-        {/* waitlist shit will go here */}
-      </Grid>
-
-      {/* Features Section */}
-      <Grid margin={10} spacing={10} gap="15" ml="10">
-        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Features</Typography>
-        <StickyScroll content={content} />
-      </Grid>
-
-      {/* Pricing Card Preview */}
-      <Grid margin={10} spacing={10} gap="15" ml="10">
-        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Pricing</Typography>
-        <HoverEffect items={pricingCards} sx={{color: theme.palette.secondary.contrastText, backgroundColor: theme.palette.primary.dark}}/>
-      </Grid>
 
       {/* need to work on foot to match the styling on figma */}
       <footer>
