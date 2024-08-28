@@ -68,7 +68,7 @@ const content = [
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
         <Image
-          src="/linear.webp"
+          // src="/linear.webp"
           width={300}
           height={300}
           className="h-full w-full object-cover"
