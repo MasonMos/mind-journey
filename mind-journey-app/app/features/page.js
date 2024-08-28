@@ -11,6 +11,9 @@ import { createTheme } from '@mui/material/styles';
 
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
+import FeaturesSectionDemo from '@/components/blocks/features-section-demo-3';
+import { SkeletonOne, SkeletonTwo, SkeletonThree, SkeletonFour} from '@/components/blocks/features-section-demo-3';
+
 
 
 import { Jost } from "next/font/google";
@@ -45,79 +48,38 @@ const theme = createTheme({
   },
 });
 
-//aceternity features
-const content = [
+const features = [
   {
-    title: "AI-Powered Emotional Check-Ins",
+    title: "Track issues effectively",
     description:
-      "Receive regular emotional check-ins from our AI, designed to understand your feelings and provide immediate, tailored responses. Whether you're feeling anxious, stressed, or down, our AI is here to listen and offer the right guidance.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Demo GiF/Loom Video Goes Here
-      </div>
-    ),
+      "Track and manage your project issues with ease using our intuitive interface.",
+    skeleton: <SkeletonOne />,
+    className:
+      "col-span-1 lg:col-span-4 border-b lg:border-r dark:border-neutral-800",
   },
   {
-    title: "Personalized Mental Health Plans",
+    title: "Capture pictures with AI",
     description:
-      "Get access to customized mental health plans based on your unique needs and goals. Our AI analyzes your interactions and feedback to create a plan that evolves with you, ensuring you always have the right tools and support.",
-    content: (
-      <div className="h-full w-full  flex items-center justify-center text-white">
-        <Image
-          src="/linear.webp"
-          width={300}
-          height={300}
-          className="h-full w-full object-cover"
-          alt="linear board demo"
-        />
-      </div>
-    ),
+      "Capture stunning photos effortlessly using our advanced AI technology.",
+    skeleton: <SkeletonTwo />,
+    className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
   },
   {
-    title: "Guided Meditation and Relaxation Techniques",
+    title: "Watch our AI on YouTube",
     description:
-      "Explore a library of guided meditations and relaxation exercises that help reduce stress and promote mindfulness. Tailored to your emotional state, these sessions provide a calming experience to help you manage daily challenges.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        demo goes here
-      </div>
-    ),
+      "Whether its you or Tyler Durden, you can get to know about our product on YouTube",
+    skeleton: <SkeletonThree />,
+    className:
+      "col-span-1 lg:col-span-3 lg:border-r  dark:border-neutral-800",
   },
   {
-    title: "24/7 Emotional Support",
+    title: "Deploy in seconds",
     description:
-      "Experience peace of mind knowing that support is available whenever you need it. Our AI-driven service provides round-the-clock emotional assistance, offering immediate comfort and practical advice during difficult times.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        demo goes here
-      </div>
-    ),
+      "With our blazing fast, state of the art, cutting edge, we are so back cloud servies (read AWS) - you can deploy your model in seconds.",
+    skeleton: <SkeletonFour />,
+    className: "col-span-1 lg:col-span-3 border-b lg:border-none",
   },
 ];
-
-//aceternity pricing cards
-export const pricingCards = [
-  {
-    title: "Basic Support (Free)",
-    description:
-      "Access to introductory mental health resources. Limited AI-guided self-help tools. Community support through forums.",
-    link: "/pricing",
-  },
-  {
-    title: "Enhanced Care ($5/month)",
-    description:
-      "Everything in Basic Support. Personalized AI mental health assessments. Access to guided meditation and relaxation techniques. Monthly progress tracking and reports.",
-    link: "/pricing",
-  },
-  {
-    title: "Premium Wellness ($10/month)",
-    description:
-      "Everything in Enhanced Care. 24/7 access to AI-driven emotional support. Customized mental health plans tailored to your needs. Exclusive content and workshops from mental health professionals.",
-    link: "/pricing",
-  },
-];
-
-
 
 export default function Home() {
   const {isLoading, isSignedIn, user} = useUser()
@@ -148,27 +110,15 @@ export default function Home() {
       </AppBar>
 
 
-      <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-        <HeroHighlight>
-          <motion.h1
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: [20, -5, 0],
-            }}
-            transition={{
-              duration: 0.25,
-              ease: [0.4, 0.0, 0.2, 1],
-            }}
-            className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
-          >
-            {" "} <Highlight className="text-white dark:text-white">Features</Highlight>
-          </motion.h1>
-        </HeroHighlight>
-      </Box>
+      {/* <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}> */}
+        <Grid container >
+          {/* Importing and using the FeaturesSectionDemo directly */}
+          <FeaturesSectionDemo />
+        </Grid>
+      {/* </Box> */}
+
+    
+
 
       {/* need to work on foot to match the styling on figma */}
       <footer>
