@@ -1,6 +1,9 @@
-'use client'
+'use client';
+
+import "../../globals.css";
 
 import React from 'react'
+import { useEffect, useState } from 'react';
 import { Container, Box, Typography, AppBar, Toolbar, Button } from '@mui/material'
 import { SignIn, SignUp } from '@clerk/nextjs'
 import Link from 'next/link'
@@ -36,9 +39,19 @@ const theme = createTheme({
     },
   },
 });
-  
+
 
 export default function SignInPage(){
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null; // or a loader/spinner if desired
+    }
+
     return(
     <Container maxWidth="100vw">
         <AppBar position="static" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>

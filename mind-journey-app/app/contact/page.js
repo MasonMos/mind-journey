@@ -11,9 +11,6 @@ import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity car
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
@@ -46,80 +43,6 @@ const theme = createTheme({
     },
   },
 });
-
-//aceternity features
-const content = [
-  {
-    title: "AI-Powered Emotional Check-Ins",
-    description:
-      "Receive regular emotional check-ins from our AI, designed to understand your feelings and provide immediate, tailored responses. Whether you're feeling anxious, stressed, or down, our AI is here to listen and offer the right guidance.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Demo GiF/Loom Video Goes Here
-      </div>
-    ),
-  },
-  {
-    title: "Personalized Mental Health Plans",
-    description:
-      "Get access to customized mental health plans based on your unique needs and goals. Our AI analyzes your interactions and feedback to create a plan that evolves with you, ensuring you always have the right tools and support.",
-    content: (
-      <div className="h-full w-full  flex items-center justify-center text-white">
-        <Image
-          src="/linear.webp"
-          width={300}
-          height={300}
-          className="h-full w-full object-cover"
-          alt="linear board demo"
-        />
-      </div>
-    ),
-  },
-  {
-    title: "Guided Meditation and Relaxation Techniques",
-    description:
-      "Explore a library of guided meditations and relaxation exercises that help reduce stress and promote mindfulness. Tailored to your emotional state, these sessions provide a calming experience to help you manage daily challenges.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        demo goes here
-      </div>
-    ),
-  },
-  {
-    title: "24/7 Emotional Support",
-    description:
-      "Experience peace of mind knowing that support is available whenever you need it. Our AI-driven service provides round-the-clock emotional assistance, offering immediate comfort and practical advice during difficult times.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        demo goes here
-      </div>
-    ),
-  },
-];
-
-//aceternity pricing cards
-export const pricingCards = [
-  {
-    title: "Basic Support (Free)",
-    description:
-      "Access to introductory mental health resources. Limited AI-guided self-help tools. Community support through forums.",
-    link: "/pricing",
-  },
-  {
-    title: "Enhanced Care ($5/month)",
-    description:
-      "Everything in Basic Support. Personalized AI mental health assessments. Access to guided meditation and relaxation techniques. Monthly progress tracking and reports.",
-    link: "/pricing",
-  },
-  {
-    title: "Premium Wellness ($10/month)",
-    description:
-      "Everything in Enhanced Care. 24/7 access to AI-driven emotional support. Customized mental health plans tailored to your needs. Exclusive content and workshops from mental health professionals.",
-    link: "/pricing",
-  },
-];
-
-
 
 export default function Home() {
   const {isLoading, isSignedIn, user} = useUser()

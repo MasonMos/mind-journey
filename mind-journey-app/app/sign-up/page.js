@@ -1,4 +1,5 @@
 'use client';
+import "../globals.css";
 
 import React from 'react'
 import { Container, Box, Typography, AppBar, Toolbar, Button } from '@mui/material'
@@ -59,21 +60,19 @@ export default function SignUpPage(){
       </AppBar>
 
 
-        <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{textAlign: 'center', my: 4, gap: 15}}
-            >
-            <Box sx={{filter: 'invert(1)'}}>
-            <Typography variant="h4" component="h1" gutterBottom sx={{textAlign: 'center', gap: 10}}>
-                sign up for mindjourney
-            </Typography>
-            <Image src="/moon.svg" alt="logo" width="20" height="20" />
-            </Box>
-            <SignUp />
-        </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        sx={{textAlign: 'center', my: 4, gap: 15}}
+      >
+          <Typography variant="h4" component="h1" gutterBottom sx={{textAlign: 'center', gap: 10, color: theme.palette.primary.contrastText}}>
+              sign up for mindjourney
+          </Typography>
+          <Image src="/moon.svg" alt="logo" width="20" height="20" />
+          <SignUp />
+      </Box>
     </Container>
     );
 }
