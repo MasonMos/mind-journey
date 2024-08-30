@@ -10,6 +10,8 @@ import { Container, Grid, AppBar, Toolbar, Box, Button, Stack, Typography, TextF
 import { createTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
+import { BackgroundBeamsWithCollision } from '@/components/ui/background-beams-with-collision';
+
 import { Jost } from "next/font/google";
 import Link from "next/link";
 import Image from 'next/image';
@@ -197,14 +199,14 @@ export default function Chat() {
         </Toolbar>
       </AppBar>
 
-    <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '85vh', width: '100vw', backgroundColor: "#181818" }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh', width: '50vw', }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '85vh', width: '100vw'}}>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh', width: '100vw', }}>
+        <BackgroundBeamsWithCollision />
         <Typography variant="h1" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold}}>Introducing Aeryn</Typography>
-      </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '12vh', width: '50vw' }}>
         <Typography variant="h5" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular}}>Your Personal AI Companion, powered by OpenAI GPT 3.5 Turbo | Free Users</Typography>
       </Box>
-    </Grid>
+    </Box>
+
 
 
     <Box>
