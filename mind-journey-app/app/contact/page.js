@@ -1,4 +1,5 @@
 'use client';
+import "../other.css";
 
 import Head from "next/head";
 import Image from "next/image";
@@ -10,7 +11,6 @@ import { createTheme } from '@mui/material/styles';
 import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
 import { motion } from "framer-motion";
-import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
@@ -63,6 +63,7 @@ export default function Home() {
             <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
             <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
             <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
+            <Button color="inherit" href="contact" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>contact</Button>
           </Box>
           
           <SignedOut>
@@ -76,31 +77,19 @@ export default function Home() {
       </AppBar>
 
 
-      <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-          <HeroHighlight>
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: [20, -5, 0],
-              }}
-              transition={{
-                duration: 0.25,
-                ease: [0.4, 0.0, 0.2, 1],
-              }}
-              className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
-            >
-              {" "} <Highlight className="text-white dark:text-white">Contact</Highlight>
-            </motion.h1>
-          </HeroHighlight>
-        </Box>
       <Container 
         maxWidth="sm" 
-        sx={{ mt: 4 }} 
-        style={{padding: 0, margin: 0}}
+        sx={{ 
+          mt: 4, 
+          margin: 'auto', 
+          padding: 10, 
+          textAlign: 'center',
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100%'  
+        }}  
         className={jost.className}
       >
       <Typography 
@@ -108,8 +97,8 @@ export default function Home() {
         align="center" 
         gutterBottom 
         position= "center"
-        fontWeightBold
         fontFamily={jost.style.fontFamily}
+        sx={{color: theme.palette.primary.contrastText}}
         >
         Contact Us
       </Typography>
@@ -124,6 +113,34 @@ export default function Home() {
           name="name"
           margin="normal"
           required
+          InputProps={{
+            style: { color: 'white' },
+            classes: {
+              notchedOutline: 'white-outline'
+            }
+          }}
+          InputLabelProps={{
+            style: { color: 'white' }
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: 'white',
+            },
+            '& .MuiInputBase-input': {
+              color: 'white',
+            },
+          }}
         />
         <TextField
           fullWidth
@@ -134,6 +151,34 @@ export default function Home() {
           onSubmit={handleSubmit}
           required
           errors={state.errors}
+          InputProps={{
+            style: { color: 'white' },
+            classes: {
+              notchedOutline: 'white-outline'
+            }
+          }}
+          InputLabelProps={{
+            style: { color: 'white' }
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: 'white',
+            },
+            '& .MuiInputBase-input': {
+              color: 'white',
+            },
+          }}
         />
         <TextField
           fullWidth
@@ -144,16 +189,44 @@ export default function Home() {
           rows={4}
           required
           errors={state.errors}
+          InputProps={{
+            style: { color: 'white' },
+            classes: {
+              notchedOutline: 'white-outline'
+            }
+          }}
+          InputLabelProps={{
+            style: { color: 'white' }
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: 'white',
+            },
+            '& .MuiInputBase-input': {
+              color: 'white',
+            },
+          }}
         />
         <Box
-          justifyContent="center"
+          sx={{justifyContent: "center"}}
           padding="25px"
           >
           <Button 
             type="submit" 
             variant="contained"
             fullWidth
-            justifyContent="center"
+            sx={{justifyContent: "center", textTransform: "none"}}
             disabled={state.submitting}
             color="secondary"
             >
@@ -161,6 +234,7 @@ export default function Home() {
           </Button>
         </Box>
       </Box>
+
       <form onSubmit={handleSubmit}>
         <ValidationError 
           prefix="Email" 
@@ -174,6 +248,7 @@ export default function Home() {
         />
       </form>
     </Container>
+
       {/* need to work on foot to match the styling on figma */}
       <footer>
         <Divider variant="middle" sx={{ backgroundColor: 'white' }} />
