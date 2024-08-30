@@ -3,7 +3,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
-import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from "@mui/material";
+import { AppBar, Toolbar, Box, Button, Container,TextField, Typography, Grid, Card } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 
@@ -14,6 +14,8 @@ import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
+import ContactForm from "../contact/contactForm";
+import { useForm, ValidationError } from "@formspree/react";
 
 const jost = Jost({
   subsets: ['latin'],
@@ -46,6 +48,7 @@ const theme = createTheme({
 
 export default function Home() {
   const {isLoading, isSignedIn, user} = useUser()
+  const [state, handleSubmit] = useForm("xqaznwed");
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
@@ -94,7 +97,83 @@ export default function Home() {
             </motion.h1>
           </HeroHighlight>
         </Box>
-
+      <Container 
+        maxWidth="sm" 
+        sx={{ mt: 4 }} 
+        style={{padding: 0, margin: 0}}
+        className={jost.className}
+      >
+      <Typography 
+        variant="h3"
+        align="center" 
+        gutterBottom 
+        position= "center"
+        fontWeightBold
+        fontFamily={jost.style.fontFamily}
+        >
+        Contact Us
+      </Typography>
+      <Box 
+        component="form" 
+        onSubmit={handleSubmit} 
+        sx={{ mt: 2 }}
+      >
+        <TextField
+          fullWidth
+          label="Name"
+          name="name"
+          margin="normal"
+          required
+        />
+        <TextField
+          fullWidth
+          label="Email"
+          name="email"
+          type="email"
+          margin="normal"
+          onSubmit={handleSubmit}
+          required
+          errors={state.errors}
+        />
+        <TextField
+          fullWidth
+          label="Message"
+          name="message"
+          margin="normal"
+          multiline
+          rows={4}
+          required
+          errors={state.errors}
+        />
+        <Box
+          justifyContent="center"
+          padding="25px"
+          >
+          <Button 
+            type="submit" 
+            variant="contained"
+            fullWidth
+            justifyContent="center"
+            disabled={state.submitting}
+            color="secondary"
+            >
+            Submit
+          </Button>
+        </Box>
+      </Box>
+      <form onSubmit={handleSubmit}>
+        <ValidationError 
+          prefix="Email" 
+          field="email"
+          errors={state.errors}
+        />
+        <ValidationError 
+          prefix="Message" 
+          field="message"
+          errors={state.errors}
+        />
+      </form>
+    </Container>
       {/* need to work on foot to match the styling on figma */}
       <footer>
         <Divider variant="middle" sx={{ backgroundColor: 'white' }} />
@@ -143,7 +222,6 @@ export default function Home() {
           </Box>
         </Box>
       </footer>
-
     </Container>
   );
 }
