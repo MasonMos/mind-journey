@@ -4,6 +4,9 @@ import "../other.css";
 
 import Head from "next/head";
 import Image from "next/image";
+
+import getStripe from "@/utils/get-stripe";
+
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from "@mui/material";
 import Divider from '@mui/material/Divider';
@@ -46,6 +49,47 @@ const theme = createTheme({
     },
   },
 });
+
+const handleSubmit = async () => {
+  const checkoutSession = await fetch("/api/checkout_session", {
+    method: "POST",
+    headers: {
+      origin: 'http://localhost:3000',
+    },
+    body: JSON.stringify({userId: user?.id}),
+  });
+
+const checkout_session = await checkoutSession.json();
+
+if (checkoutSession.statusCode === 500){
+  console.error(checkoutSession.message);
+  return
+}
+
+const stripe = await getStripe();
+const { error } = await stripe.redirectToCheckout({
+  sessionId: checkout_session.id,
+});
+
+if (error){
+  console.warn(error.message);
+}
+}
+
+const handleProceed = async () => {
+  if (!isSignedIn) {
+      alert("Please sign in to continue.");
+      return;
+  }
+
+  const userDocRef = doc(db, 'users', user.id);
+  
+  await setDoc(userDocRef, { 
+      membershipStatus: membershipStatus 
+  }, { merge: true });
+
+ // router.push('/next-page');  // Redirect to the next page
+};
 
 export default function Home() {
   const {isLoading, isSignedIn, user} = useUser()
@@ -102,7 +146,7 @@ export default function Home() {
                 Limited AI-guided self-help tools. <br />
                 Community support through forums. <br />
             </p>
-            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800">
+            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800" onClick={handleProceed}>
               <span>Buy now </span>
               <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
                 Free
@@ -131,7 +175,7 @@ export default function Home() {
             Access to guided meditation and relaxation techniques. <br />
             Monthly progress tracking and reports. <br />
             </p>
-            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800">
+            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800" onClick={handleSubmit}>
               <span>Buy now </span>
               <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
                 5$
@@ -160,7 +204,7 @@ export default function Home() {
               Customized mental health plans tailored to your needs. <br />
               Exclusive content and workshops from mental health professionals. <br />
             </p>
-            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800">
+            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800" onClick={handleSubmit}>
               <span>Buy now </span>
               <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
                 10$
