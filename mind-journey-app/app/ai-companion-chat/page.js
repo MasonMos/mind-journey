@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react'
 import '../other.css';
 
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
-import { Container, AppBar, Toolbar, Box, Button, Stack, Typography, TextField } from '@mui/material'
+import { Container, Grid, AppBar, Toolbar, Box, Button, Stack, Typography, TextField } from '@mui/material'
 import { createTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
@@ -179,11 +179,12 @@ export default function Chat() {
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
+          <Link variant="h6" href="/" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Link>
             <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
             <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
             <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
             <Button color="inherit" href="contact" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>contact</Button>
+
           </Box>
           
           <SignedOut>
@@ -195,6 +196,16 @@ export default function Chat() {
           </SignedIn>
         </Toolbar>
       </AppBar>
+
+    <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '85vh', width: '100vw', backgroundColor: "#181818" }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh', width: '50vw', }}>
+        <Typography variant="h1" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold}}>Introducing Aeryn</Typography>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '12vh', width: '50vw' }}>
+        <Typography variant="h5" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular}}>Your Personal AI Companion, powered by OpenAI GPT 3.5 Turbo | Free Users</Typography>
+      </Box>
+    </Grid>
+
 
     <Box>
       <Box

@@ -23,6 +23,7 @@
     "lucide-react": "^0.436.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "14.2.6",
+    "openai": "^4.57.0",
     "react": "^18",
     "react-dom": "^18",
     "stripe": "^16.9.0",

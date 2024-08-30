@@ -35,9 +35,9 @@ export default function FeaturesSectionDemo() {
         "col-span-1 lg:col-span-3 lg:border-r  dark:border-neutral-800",
     },
     {
-      title: "Deploy in seconds",
+      title: "AI-Powered Health Companion",
       description:
-        "With our blazing fast, state of the art, cutting edge, we are so back cloud servies (read AWS) - you can deploy your model in seconds.",
+        "Experience lightning-fast, state-of-the-art AI assistance with our cloud services. Our free tier harnesses the power of GPT-3.5 Turbo, while our paid plans elevate your experience with the advanced 4o-mini and 4o models. Deploy your personalized AI companion in seconds and take control of your mental well-being.",
       skeleton: <SkeletonFour />,
       className: "col-span-1 lg:col-span-3 border-b lg:border-none",
     },
@@ -52,8 +52,7 @@ export default function FeaturesSectionDemo() {
 
         <p
           className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
-          From Image generation to video generation, Everything AI has APIs for
-          literally everything. It can even create this website copy for you.
+          Packed with advanced features, our AI Health Companion offers personalized support for your mental well-being. From insightful analysis to actionable recommendations, our platform leverages cutting-edge models to deliver a seamless experience. 
         </p>
       </div>
       <div className="relative ">
@@ -232,7 +231,8 @@ export const SkeletonFour = () => {
   return (
     (<div
       className="h-60 md:h-60  flex flex-col items-center relative bg-transparent dark:bg-transparent mt-10">
-      <Globe className="absolute -right-10 md:-right-10 -bottom-80 md:-bottom-72" />
+      {/* <Globe className="absolute -right-10 md:-right-10 -bottom-80 md:-bottom-72" /> */}
+      <button backgroundColor="white" href="/ai-companion-chat">Demo</button>
     </div>)
   );
 };
