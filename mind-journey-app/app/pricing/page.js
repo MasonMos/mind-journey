@@ -4,6 +4,7 @@ import "../other.css";
 
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from 'react';
 
 import getStripe from "@/utils/get-stripe";
 
@@ -92,6 +93,7 @@ const handleProceed = async () => {
 };
 
 export default function Home() {
+  const [membershipStatus, setMembershipStatus] = useState('Free');
   const {isLoading, isSignedIn, user} = useUser()
 
   return (

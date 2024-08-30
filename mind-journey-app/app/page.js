@@ -124,7 +124,11 @@ export const pricingCards = [
 
 
 export default function Home() {
-  const {isLoading, isSignedIn, user} = useUser()
+  const { isLoading, isSignedIn, user } = useUser();
+
+  if (isLoading) {
+    return <div>Loading...</div>; // or some loading spinner
+  }
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
