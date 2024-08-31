@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react'
 import '../other.css';
 
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
-import { Container, Grid, AppBar, Toolbar, Box, Button, Stack, Typography, TextField } from '@mui/material'
+import { Container, Grid, AppBar, Toolbar, Box, Button, Stack, Typography, TextField, Divider } from '@mui/material'
 import { createTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
@@ -102,7 +102,7 @@ export default function Chat() {
     ]);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/api/ai_companion_chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,15 +199,29 @@ export default function Chat() {
         </Toolbar>
       </AppBar>
 
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '85vh', width: '100vw'}}>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh', width: '100vw', }}>
-        <BackgroundBeamsWithCollision />
-        <Typography variant="h1" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold}}>Introducing Aeryn</Typography>
-        <Typography variant="h5" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular}}>Your Personal AI Companion, powered by OpenAI GPT 3.5 Turbo | Free Users</Typography>
-      </Box>
-    </Box>
+      <BackgroundBeamsWithCollision>
+      <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '85vh', width: '100vw'}}>
+        <Box>
+          <h1 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
+            {" "}
+            <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
+              <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
+                <span className="">Introducing Aeryn</span>
+              </div>
+              <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+                <span className="">Introducing Aeryn</span>
+              </div>
+            </div>
+          </h1>
 
-
+          <h3 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
+            <div>
+              <Typography variant="h5" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular}}>Your Personal AI Companion, powered by OpenAI GPT 3.5 Turbo | Free Users</Typography>
+            </div>
+          </h3>
+        </Box>
+      </Grid>
+    </BackgroundBeamsWithCollision>
 
     <Box>
       <Box
@@ -274,6 +288,7 @@ export default function Chat() {
               sx={{
                 backgroundColor: theme.palette.primary.contrastText,
                 color: theme.palette.primary.contrastText,
+                borderRadius: 2,
               }}
 
               InputProps={{
@@ -284,8 +299,8 @@ export default function Chat() {
                 ),
               }}
 
-              id="outlined-basic" 
-              variant="outlined"
+              id="filled-basic" 
+              variant="filled"
               label="Message Aeryn"
               fullWidth
               value={message}
@@ -295,7 +310,7 @@ export default function Chat() {
                   sendMessage();
                 }
               }}
-              color="success"
+              
             />
 
             <Button 
@@ -319,6 +334,54 @@ export default function Chat() {
         </Stack>
       </Box>
     </Box>
+
+    <footer>
+        <Divider variant="middle" sx={{ backgroundColor: 'white' }} />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', color: theme.palette.secondary.contrastText }}>
+          
+          {/* Logo Section */}
+          <Box sx={{ display: 'column', alignItems: 'center', filter: 'invert(1)', mr:"2" }} margin={10}> 
+            <Image src="/moon.svg" alt="logo" width="20" height="20" sx={{mr:"2"}} />
+            <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2, filter: "invert(1)" }}>mindjourney</Typography>
+
+            {/* Description Section */}
+            <Box marginBottom={2}>
+              <Typography variant="body1" sx={{ fontFamily: jost.style.fontFamily, fontWeight: 'regular', textAlign: 'center', color: "black" }}>
+                formed by a group of college kids trying to make it through life
+              </Typography>
+            </Box>
+
+            {/* Social Links Section */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', filter: "invert(1)" }}>
+              {[
+                { name: ' ryan tran', url: 'https://www.linkedin.com/in/ryantren/' },
+                { name: ' mason moses', url: 'https://www.linkedin.com/in/mason-moses/' },
+                { name: ' jeremiah dawson', url: 'https://www.linkedin.com/in/jeremiah-dawson-2644982a2/' },
+                { name: ' nabit karowadia', url: 'https://www.linkedin.com/in/nabit-karowadia-848376224/' }
+              ].map(link => (
+                <Link key={link.name} color="inherit" href={link.url} sx={{color: theme.palette.secondary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: 'light', textTransform: 'none', marginBottom: 1, display: 'flex', alignItems: 'center' }}>
+                  <Image src="/linkedin.svg" alt="logo" width="18" height="18" style={{ marginRight: '8px', filter: "invert(1)" }} />
+                  {link.name}
+                </Link>
+              ))}
+            </Box>
+          </Box>
+          
+          {/* Navigation Links Section */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginRight: 10, gap: 2 }}>
+            {[
+              { name: 'features', path: 'http://localhost:3000/features' },
+              { name: 'pricing', path: 'http://localhost:3000/pricing' },
+              { name: 'github', path: 'https://github.com/MasonMos/mind-journey' },
+              { name: 'contact', path: 'http://localhost:3000/contact' }
+            ].map(link => (
+              <Link key={link.name} color="inherit" href={link.path} sx={{ color: 'white', fontFamily: jost.style.fontFamily, fontWeight: 'light', textTransform: 'none', marginBottom: 1, }}>
+                {link.name}
+              </Link>
+            ))}
+          </Box>
+        </Box>
+      </footer>
     </Container>
   )
 }

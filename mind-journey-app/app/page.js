@@ -52,12 +52,12 @@ const theme = createTheme({
 //aceternity features
 const content = [
   {
-    title: "AI-Powered Emotional Check-Ins",
+    title: "AI-Powered Chat Companion",
     description:
       "Receive regular emotional check-ins from our AI, designed to understand your feelings and provide immediate, tailored responses. Whether you're feeling anxious, stressed, or down, our AI is here to listen and offer the right guidance.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Demo GiF/Loom Video Goes Here
+        <Link href="/ai-companion-chat">Chat Now</Link>
       </div>
     ),
   },
@@ -108,13 +108,13 @@ export const pricingCards = [
     link: "/pricing",
   },
   {
-    title: "Enhanced Plan ($5/month)",
+    title: "Enhanced Plan ($5)",
     description:
       "Everything in Basic Support. Personalized AI mental health assessments. Access to guided meditation and relaxation techniques. Monthly progress tracking and reports.",
     link: "/pricing",
   },
   {
-    title: "Premium Plan ($10/month)",
+    title: "Premium Plan ($10)",
     description:
       "Everything in Enhanced Care. 24/7 access to AI-driven emotional support. Customized mental health plans tailored to your needs. Exclusive content and workshops from mental health professionals.",
     link: "/pricing",
