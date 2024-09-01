@@ -184,23 +184,18 @@ export default function Home() {
         <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
           <HeroHighlight>
             <motion.h1
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: [20, -5, 0],
-              }}
-              transition={{
-                duration: 0.25,
-                ease: [0.4, 0.0, 0.2, 1],
-              }}
-              className="text-5xl px-5 md:text-4xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-4xl leading-relaxed lg:leading-snug mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: [20, -5, 0] }}
+              transition={{ duration: 0.25, ease: [0.4, 0.0, 0.2, 1] }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl leading-snug md:leading-relaxed mx-auto px-4 sm:px-6 md:px-8"
             >
-              Make a {" "} <Highlight className="text-white dark:text-white">life changing</Highlight> <br /> difference with<br /> your health
+              Make a {" "}
+              <Highlight className="text-white dark:text-white">life changing</Highlight> <br />
+              difference with<br />
+              your health
             </motion.h1>
           </HeroHighlight>
+
 
           <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
         </Box>
@@ -223,6 +218,9 @@ export default function Home() {
           </HoverBorderGradient>
         </Box>
       </Grid>
+
+      
+      
 
       {/* Waitlist Component will go here */}
       <Grid margin={10}>
