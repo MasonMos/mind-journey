@@ -9,10 +9,7 @@ import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from 
 import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 
-import { motion } from "framer-motion";
-import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import FeaturesSectionDemo from '@/components/blocks/features-section-demo-3';
-import { SkeletonOne, SkeletonTwo, SkeletonThree, SkeletonFour} from '@/components/blocks/features-section-demo-3';
 
 
 
