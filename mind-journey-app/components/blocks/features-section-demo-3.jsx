@@ -22,7 +22,7 @@ export default function FeaturesSectionDemo() {
     {
       title: "AI-Personalized Mental Health Plans, Guided Meditation, and Relaxation Techniques",
       description:
-        "Our AI-powered health companion offers personalized mental health plans, guided meditation, and relaxation techniques to help you improve your mental well-being. Our platform leverages cutting-edge models to deliver a seamless experience.",
+        "Our AI-powered health companion offers personalized mental health plans, guided meditation, and relaxation techniques to help you improve your mental well-being. Our platform leverages cutting-edge models to deliver a seamless experience. ",
       skeleton: <SkeletonTwo />,
       className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
     },
@@ -176,26 +176,27 @@ export const SkeletonTwo = () => {
     },
   };
   return (
-    (<div
-      className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
-      {/* TODO */}
+    <Link href="/your-desired-path" className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
+      {/* Existing content */}
       <div className="flex flex-row -ml-20">
         {images.map((image, idx) => (
           <motion.div
-            variants={imageVariants}
             key={"images-first" + idx}
+            variants={imageVariants}
+            whileHover="whileHover"
+            whileTap="whileTap"
             style={{
               rotate: Math.random() * 20 - 10,
             }}
-            whileHover="whileHover"
-            whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden">
+            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
+          >
             <Image
               src={image}
               alt="bali images"
               width="500"
               height="500"
-              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0" />
+              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+            />
           </motion.div>
         ))}
       </div>
@@ -209,21 +210,21 @@ export const SkeletonTwo = () => {
             variants={imageVariants}
             whileHover="whileHover"
             whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden">
+            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
+          >
             <Image
               src={image}
               alt="bali images"
               width="500"
               height="500"
-              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0" />
+              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+            />
           </motion.div>
         ))}
       </div>
-      <div
-        className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
-      <div
-        className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
-    </div>)
+      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent h-full pointer-events-none" />
+      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black to-transparent h-full pointer-events-none" />
+    </Link>
   );
 };
 
