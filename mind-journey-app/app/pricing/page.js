@@ -2,25 +2,25 @@
 
 import "../other.css";
 
-import Head from "next/head";
+import { Jost } from "next/font/google";
+import { useRouter } from 'next/navigation';
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from 'react';
 
+import { doc, setDoc } from 'firebase/firestore'
+import { db } from '@/firebase'
+
 import getStripe from "@/utils/get-stripe";
 
-import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, user, useUser, UserButton } from "@clerk/nextjs";
+
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 
-import { motion } from "framer-motion";
-import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
-// import { IconAppWindow } from "@tabler/icons-react";
 
-
-import { Jost } from "next/font/google";
-import Link from "next/link";
 
 const jost = Jost({
   subsets: ['latin'],
@@ -57,7 +57,7 @@ const handleSubmit = async () => {
     headers: {
       origin: 'http://localhost:3000',
     },
-    body: JSON.stringify({userId: user?.id}),
+    body: JSON.stringify({userId: user.id}),
   });
 
 const checkout_session = await checkoutSession.json();
@@ -77,24 +77,33 @@ if (error){
 }
 }
 
-const handleProceed = async () => {
-  if (!isSignedIn) {
-      alert("Please sign in to continue.");
-      return;
-  }
-
-  const userDocRef = doc(db, 'users', user.id);
-  
-  await setDoc(userDocRef, { 
-      membershipStatus: membershipStatus 
-  }, { merge: true });
-
- // router.push('/next-page');  // Redirect to the next page
-};
 
 export default function Home() {
   const [membershipStatus, setMembershipStatus] = useState('Free');
   const {isLoading, isSignedIn, user} = useUser()
+  const router = useRouter();
+
+  const handleProceed = async () => {
+    if (!isSignedIn) {
+        alert("Please sign in to continue.");
+        return;
+    }
+    
+    try{
+    const userDocRef = doc(db, 'users', user.id);
+    
+    await setDoc(userDocRef, { 
+        membershipStatus: membershipStatus 
+    }, { merge: true });
+
+    }
+    catch (error) {
+      console.error("Error updating document: ", error);
+    };
+
+    alert("You are now a free member!.");
+    router.push('/features');
+}
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>

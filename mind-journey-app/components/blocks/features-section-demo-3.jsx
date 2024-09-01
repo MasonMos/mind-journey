@@ -12,24 +12,24 @@ import Link from "next/link";
 export default function FeaturesSectionDemo() {
   const features = [
     {
-      title: "Track issues effectively",
+      title: "AI-Powered Journaling",
       description:
-        "Track and manage your project issues with ease using our intuitive interface.",
+        "Our AI-powered journaling feature helps you keep track of your mental health and well-being. With our advanced AI technology, you can get personalized insights and recommendations to improve your mental health.",
       skeleton: <SkeletonOne />,
       className:
         "col-span-1 lg:col-span-4 border-b lg:border-r dark:border-neutral-800",
     },
     {
-      title: "Capture pictures with AI",
+      title: "AI-Personalized Mental Health Plans, Guided Meditation, and Relaxation Techniques",
       description:
-        "Capture stunning photos effortlessly using our advanced AI technology.",
+        "Our AI-powered health companion offers personalized mental health plans, guided meditation, and relaxation techniques to help you improve your mental well-being. Our platform leverages cutting-edge models to deliver a seamless experience.",
       skeleton: <SkeletonTwo />,
       className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
     },
     {
-      title: "Watch our AI on YouTube",
+      title: "Watch our AI Demos on YouTube",
       description:
-        "Whether its you or Tyler Durden, you can get to know about our product on YouTube",
+        "Watch our AI demos on YouTube to learn more about our AI technology.",
       skeleton: <SkeletonThree />,
       className:
         "col-span-1 lg:col-span-3 lg:border-r  dark:border-neutral-800",

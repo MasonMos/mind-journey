@@ -52,12 +52,12 @@ const theme = createTheme({
 //aceternity features
 const content = [
   {
-    title: "AI-Powered Chat Companion",
+    title: "24/7 AI-Powered Chat Companion",
     description:
       "Receive regular emotional check-ins from our AI, designed to understand your feelings and provide immediate, tailored responses. Whether you're feeling anxious, stressed, or down, our AI is here to listen and offer the right guidance.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        <Link href="/ai-companion-chat">Chat Now</Link>
+        <Link href="/features">Learn More</Link>
       </div>
     ),
   },
@@ -83,17 +83,17 @@ const content = [
       "Explore a library of guided meditations and relaxation exercises that help reduce stress and promote mindfulness. Tailored to your emotional state, these sessions provide a calming experience to help you manage daily challenges.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        demo goes here
+        <Link href="/features">Learn More</Link>
       </div>
     ),
   },
   {
-    title: "24/7 Emotional Support",
+    title: "AI-Powered Journaling and Mood Tracking",
     description:
-      "Experience peace of mind knowing that support is available whenever you need it. Our AI-driven service provides round-the-clock emotional assistance, offering immediate comfort and practical advice during difficult times.",
+      "Keep track of your mental health journey with AI-driven journaling and mood tracking. Our platform helps you reflect on your emotions, identify patterns, and gain insights into your mental well-being over time.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        demo goes here
+        <Link href="/features">Learn More</Link>
       </div>
     ),
   },
@@ -126,12 +126,22 @@ export const pricingCards = [
 export default function Home() {
   const { isLoading, isSignedIn, user } = useUser();
 
-  if (isLoading) {
-    return <div>Loading...</div>; // or some loading spinner
-  }
+    // Use a fallback UI for the initial render to ensure consistency
+    if (typeof window === "undefined") {
+      return <div>Loading...</div>; // server-side rendering fallback
+    }
+  
+    if (isLoading) {
+      return <div>Loading...</div>; // client-side loading state
+    }
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
+      <Head maxWidth="100vw">
+        <title>mindjourney</title>
+        <meta name = "description" content = "AI-powered mental health" />
+      </Head>
+
       <AppBar position="sticky" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>

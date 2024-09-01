@@ -5,6 +5,10 @@ import { useState, useEffect, useRef } from 'react'
 
 import '../other.css';
 
+import { db } from '@/firebase'
+import { doc, collection, setDoc, getDoc, writeBatch, memoryEagerGarbageCollector } from 'firebase/firestore'
+
+
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
 import { Container, Grid, AppBar, Toolbar, Box, Button, Stack, Typography, TextField, Divider } from '@mui/material'
 import { createTheme } from '@mui/material/styles';
@@ -49,10 +53,65 @@ const sendIcon = '/images/send.png';
 
 export default function Chat() {
     const { isLoading, isSignedIn, user } = useUser();
+    const [membership, setMembership] = useState("Free")
 
-    if (isLoading) {
-        return <div>Loading...</div>; // or some loading spinner
-    }
+    useEffect (() => {
+      if (!user?.id) {
+        return; // Exit early if user.id is not available
+      }
+    
+      const checkMembership = async () => {
+        const userDocRef = doc(collection(db, "users"), user.id);
+        const docSnap = await getDoc(userDocRef);
+        setMembership(docSnap.data().membershipStatus);
+        console.log("Membership Status: ", membership);
+      }
+      
+      checkMembership();
+      }, [user, membership]);
+    
+       // Handle cases where user is not signed in or still loading
+      if (isLoading) {
+        return (
+      <Typography variant="h5" my={50} sx={{position: "relative", textAlign: "center", alignContent: "center", alignItems: "center"}} color="white">
+        <CircularProgress />
+        Loading...
+      </Typography>
+      );
+      }
+    
+      if (!isSignedIn) {
+        return(
+          <Container maxWidth="100vw" sx={{color:theme.palette.primary.contrastText}}>
+    
+            <AppBar position="static" sx={{backgroundColor: theme.palette.primary.dark, color:theme.palette.primary.contrastText}}>
+              <Toolbar>
+                <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
+                  <Image src="/moon.svg" alt="logo" width="20" height="20" />
+                </Box>
+
+                <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+                  <Link variant="h6" href="/" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Link>
+                  <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
+                  <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
+                  <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
+                  <Button color="inherit" href="contact" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>contact</Button>
+                </Box>
+              <SignedOut>
+              <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign in</Button>
+              <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign up</Button>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              </Toolbar> 
+            </AppBar>
+          <Typography variant="h5" my={50} sx={{position: "relative", textAlign: "center", alignContent: "center", alignItems: "center"}} color="white">
+            You must be signed in to talk to Aeryn.
+          </Typography>
+          </Container>
+        );
+      }
 
   const [messages, setMessages] = useState([
     {
