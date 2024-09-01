@@ -1,18 +1,12 @@
 'use client';
 
 import "../other.css";
-
-import Head from "next/head";
 import Image from "next/image";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
-
 import FeaturesSectionDemo from '@/components/blocks/features-section-demo-3';
-
-
-
 import { Jost } from "next/font/google";
 import Link from "next/link";
 
