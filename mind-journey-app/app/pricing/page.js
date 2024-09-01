@@ -140,15 +140,16 @@ export default function Home() {
         {/* pricing cards */}
         <Grid container sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center", justifyContent: "center"}}>
           <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
-          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
+          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-zinc-900 dark:bg-zinc-900">
             <Image
               src={`/moonpriceone.webp`}
               alt="moon-one"
               height="400"
               width="400"
               className="object-contain"
+              style={{ filter: 'brightness(200%) grayscale(100%)' }}
             />
-            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+            <p className="text-base sm:text-xl text-white mt-4 mb-2 dark:text-neutral-200">
               Basic <br />
             </p>
     
@@ -157,70 +158,77 @@ export default function Home() {
                 Limited AI-guided self-help tools. <br />
                 Community support through forums. <br />
             </p>
-            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800" onClick={handleProceed}>
+            <div className="flex items-center justify-center">
+            <button className="rounded-full pl-6 pr-3 py-3 text-white flex items-center justify-center space-x-1 bg-black mt-8 text-xs font-bold dark:bg-zinc-800" onClick={handleProceed}>
               <span>Buy now </span>
               <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
                 Free
               </span>
             </button>
+            </div>
 
           </BackgroundGradient>
           </Grid>
 
           <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
-          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
-            <Image
-              src={`/moonpricetwo.webp`}
-              alt="moon-two"
-              height="400"
-              width="400"
-              className="object-contain"
-            />
-            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-zinc-900 dark:bg-zinc-900">
+          <Image
+            src={`/moonpricetwo.webp`}
+            alt="moon-two"
+            height="400"
+            width="400"
+            className="object-contain"
+            style={{ filter: 'brightness(200%) grayscale(100%)' }}
+          />
+            <p className="text-base sm:text-xl text-white mt-4 mb-2 dark:text-neutral-200">
               Enhanced<br />
             </p>
     
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            Everything in Basic Support. <br />
             Personalized AI mental health assessments. <br />
-            Access to guided meditation and relaxation techniques. <br />
+            Access to AI meditation and relaxation techniques. <br />
             Monthly progress tracking and reports. <br />
             </p>
-            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800" onClick={handleSubmit}>
+            <div className="flex items-center justify-center">
+            <button className="rounded-full pl-6 pr-3 py-3 text-white flex items-center justify-center space-x-1 bg-black mt-8 text-xs font-bold dark:bg-zinc-800" onClick={handleProceed}>
               <span>Buy now </span>
               <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
-                5$
+                $5
               </span>
             </button>
+            </div>
 
           </BackgroundGradient>
           </Grid>
 
 
           <Grid item margin={10} spacing={10} gap={10} mr={10} ml={10} sx={{display: 'flex', alignItems: 'center', alignContent: "center", textAlign: "center"}}>
-          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
+          <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-zinc-900 dark:bg-zinc-900">
             <Image
               src={`/moonpricethree.webp`}
               alt="moon-three"
               height="400"
               width="400"
               className="object-contain"
+              style={{ filter: 'brightness(200%) grayscale(100%)' }}
             />
-            <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+            <p className="text-base sm:text-xl text-white mt-4 mb-2 dark:text-neutral-200">
               Premium <br />
             </p>
     
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              Everything in Enhanced Care. 24/7 access to AI-driven emotional support. <br />
-              Customized mental health plans tailored to your needs. <br />
-              Exclusive content and workshops from mental health professionals. <br />
+              24/7 access to AI-driven emotional support. <br />
+              AI Mental health plans tailored to your needs. <br />
+              Exclusive content from mindjourney. <br />
             </p>
-            <button className="rounded-full pl-4 pr-1 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-xs font-bold dark:bg-zinc-800" onClick={handleSubmit}>
+            <div className="flex items-center justify-center">
+            <button className="rounded-full pl-6 pr-3 py-3 text-white flex items-center justify-center space-x-1 bg-black mt-8 text-xs font-bold dark:bg-zinc-800" onClick={handleProceed}>
               <span>Buy now </span>
               <span className="bg-zinc-700 rounded-full text-[0.6rem] px-2 py-0 text-white">
-                10$
+                $10
               </span>
             </button>
+            </div>
 
           </BackgroundGradient>
           </Grid>
