@@ -264,12 +264,46 @@ export const Globe = ({
         // longitude latitude
         { location: [37.7595, -122.4367], size: 0.03 },
         { location: [40.7128, -74.006], size: 0.1 },
+        { location: [34.0522, -118.2437], size: 0.05 },
+        { location: [51.5074, -0.1278], size: 0.07 },
+        { location: [48.8566, 2.3522], size: 0.06 },
+
+        // North America
+        { location: [37.7595, -122.4367], size: 0.03 }, // San Francisco, USA
+        { location: [40.7128, -74.0060], size: 0.1 },  // New York, USA
+        { location: [34.0522, -118.2437], size: 0.05 }, // Los Angeles, USA
+
+        // South America
+        { location: [-23.5505, -46.6333], size: 0.05 }, // São Paulo, Brazil
+        { location: [-34.6037, -58.3816], size: 0.06 }, // Buenos Aires, Argentina
+
+        // Europe
+        { location: [51.5074, -0.1278], size: 0.07 }, // London, UK
+        { location: [48.8566, 2.3522], size: 0.06 }, // Paris, France
+        { location: [52.5200, 13.4050], size: 0.05 }, // Berlin, Germany
+        { location: [40.4168, -3.7038], size: 0.04 }, // Madrid, Spain
+
+        // Africa
+        { location: [30.0444, 31.2357], size: 0.05 }, // Cairo, Egypt
+        { location: [6.5244, 3.3792], size: 0.04 }, // Lagos, Nigeria
+
+        // Asia
+        { location: [35.6828, 139.7590], size: 0.07 }, // Tokyo, Japan
+        { location: [39.9042, 116.4074], size: 0.06 }, // Beijing, China
+        { location: [28.6139, 77.2090], size: 0.05 }, // Delhi, India
+
+        // Australia
+        { location: [-33.8688, 151.2093], size: 0.06 }, // Sydney, Australia
+
+        // Antarctica
+        { location: [-90.0000, 0.0000], size: 0.03 }, // South Pole
+
       ],
       onRender: (state) => {
         // Called on every animation frame.
         // `state` will be an empty object, return updated params.
         state.phi = phi;
-        phi += 0.0025;
+        phi += 0.0125;
       },
     });
 
