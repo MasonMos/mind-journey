@@ -51,6 +51,41 @@ const theme = createTheme({
   },
 });
 
+const sections = [
+  {
+    title: 'Introduction',
+    content: 'Welcome to Mindjorney! By subscribing to our membership plans, you agree to these terms and conditions. Please read them carefully.'
+  },
+  {
+    title: 'Membership Plans',
+    content: 'We offer different membership plans, each with its own features and benefits. Memberships are billed on a monthly basis, with the option to upgrade or downgrade at any time.'
+  },
+  {
+    title: 'Billing and Payments',
+    content: 'Payments for membership plans are processed through our secure payment gateway. Your membership will automatically renew each month unless you cancel it. If payment is unsuccessful, your membership will be suspended until payment is received.'
+  },
+  {
+    title: 'Cancellations and Refunds',
+    content: 'You can cancel your membership at any time through your account settings. Upon cancellation, your membership benefits will continue until the end of the current billing cycle. We do not offer refunds for partial months.'
+  },
+  {
+    title: 'Use of Services',
+    content: 'Our services are for personal use only. Sharing accounts or access with others is not allowed. You agree to use Mindjorney responsibly and in accordance with all applicable laws and regulations.'
+  },
+  {
+    title: 'Privacy',
+    content: 'We are committed to protecting your privacy. Please review our Privacy Policy to understand how we handle your personal information.'
+  },
+  {
+    title: 'Changes to Terms',
+    content: 'We may update these terms and conditions from time to time. Changes will be effective immediately upon posting on our website. By continuing to use our services after changes are made, you agree to the revised terms.'
+  },
+  {
+    title: 'Contact Us',
+    content: 'If you have any questions or concerns about these terms and conditions, please contact us at [insert contact email].'
+  }
+];
+
 const handleSubmit = async () => {
   const checkoutSession = await fetch("/api/checkout_session", {
     method: "POST",
@@ -133,7 +168,7 @@ export default function Home() {
       </AppBar>
 
       <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
-          <Typography variant="h2" sx={{postion: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: 10}}>Pricing Options</Typography>
+          <Typography variant="h2" className={jost.className} sx={{postion: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: 10}}>Pricing Options</Typography>
       </Box>
         
 
@@ -252,7 +287,7 @@ export default function Home() {
             }}
         >
             <Typography
-                variant="h3"
+                variant="h5"
                 sx={{
                     fontFamily: jost.style.fontFamily,
                     fontWeight: theme.typography.fontWeightBold,
@@ -267,62 +302,16 @@ export default function Home() {
             <Typography variant="body1" sx={{ marginBottom: 8 }}>
                 Effective Date: [8/26/2024]
             </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                1. Introduction
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                Welcome to Mindjorney! By subscribing to our membership plans, you agree to these terms and conditions. Please read them carefully.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                2. Membership Plans
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - We offer different membership plans, each with its own features and benefits. Memberships are billed on a monthly basis, with the option to upgrade or downgrade at any time.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                3. Billing and Payments
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - Payments for membership plans are processed through our secure payment gateway. Your membership will automatically renew each month unless you cancel it. If payment is unsuccessful, your membership will be suspended until payment is received.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                4. Cancellations and Refunds
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - You can cancel your membership at any time through your account settings. Upon cancellation, your membership benefits will continue until the end of the current billing cycle. We do not offer refunds for partial months.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                5. Use of Services
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - Our services are for personal use only. Sharing accounts or access with others is not allowed. You agree to use Mindjorney responsibly and in accordance with all applicable laws and regulations.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                6. Privacy
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - We are committed to protecting your privacy. Please review our Privacy Policy to understand how we handle your personal information.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                7. Changes to Terms
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 2 }}>
-                - We may update these terms and conditions from time to time. Changes will be effective immediately upon posting on our website. By continuing to use our services after changes are made, you agree to the revised terms.
-            </Typography>
-
-            <Typography variant="subtitle1" sx={{ margin: 1 }}>
-                8. Contact Us
-            </Typography>
-            <Typography variant="body2" sx={{ marginBottom: 25 }}>
-                - If you have any questions or concerns about these terms and conditions, please contact us at [insert contact email].
-            </Typography>
+            {sections.map((section, index) => (
+              <Box key={index} sx={{ marginBottom: 4 }}>
+                <Typography variant="subtitle1" sx={{ margin: 1 }}>
+                  {`${index + 1}. ${section.title}`}
+                </Typography>
+                <Typography variant="body2" sx={{ marginBottom: 2 }}>
+                  {section.content}
+                </Typography>
+              </Box>
+            ))}
         </Box>
 
       {/* need to work on foot to match the styling on figma */}
