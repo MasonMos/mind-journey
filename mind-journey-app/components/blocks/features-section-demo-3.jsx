@@ -262,11 +262,6 @@ export const Globe = ({
       glowColor: [0.6, 0.6, 1],
       markers: [
         // longitude latitude
-        { location: [37.7595, -122.4367], size: 0.03 },
-        { location: [40.7128, -74.006], size: 0.1 },
-        { location: [34.0522, -118.2437], size: 0.05 },
-        { location: [51.5074, -0.1278], size: 0.07 },
-        { location: [48.8566, 2.3522], size: 0.06 },
 
         // North America
         { location: [37.7595, -122.4367], size: 0.03 }, // San Francisco, USA
@@ -303,7 +298,7 @@ export const Globe = ({
         // Called on every animation frame.
         // `state` will be an empty object, return updated params.
         state.phi = phi;
-        phi += 0.0125;
+        phi += 0.015;
       },
     });
 
