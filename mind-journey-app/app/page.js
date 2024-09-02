@@ -12,8 +12,12 @@ import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity
 import { motion } from "framer-motion";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 
+import {firestore} from '@/firebase';
+
 import { Jost } from "next/font/google";
 import Link from "next/link";
+import { useEffect } from "react";
+import { doc, setDoc } from "firebase/firestore";
 
 const jost = Jost({
   subsets: ['latin'],
@@ -120,6 +124,23 @@ export const pricingCards = [
 
 export default function Home() {
   const {isLoading, isSignedIn, user} = useUser()
+
+  const addUser = async() => {
+
+    if(isSignedIn)
+    {
+      console.log("Signed in")
+      const docRef = doc(firestore, 'users', user.id)
+      await setDoc(docRef, {}, {merge: true})
+    }
+    else{
+      console.log("Not signed in")
+    }
+  }
+
+  useEffect(() => {
+    addUser()
+  }, [isSignedIn])
 
   return (
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
