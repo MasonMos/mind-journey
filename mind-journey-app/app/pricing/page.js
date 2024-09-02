@@ -13,7 +13,7 @@ import db from "@/firebase";
 
 import getStripe from "@/utils/get-stripe";
 
-import { SignedIn, SignedOut, user, useUser, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useUser, UserButton } from "@clerk/nextjs";
 
 import {
   AppBar,

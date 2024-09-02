@@ -19,7 +19,6 @@ import {
   SignedIn,
   SignedOut,
   isSignedIn,
-  user,
   useUser,
   UserButton,
 } from "@clerk/nextjs";

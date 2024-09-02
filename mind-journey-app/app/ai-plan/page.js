@@ -30,7 +30,6 @@ import {
   SignedIn,
   SignedOut,
   isSignedIn,
-  user,
   useUser,
   UserButton,
 } from "@clerk/nextjs";
@@ -39,6 +38,7 @@ import { createTheme } from "@mui/material/styles";
 import InputAdornment from "@mui/material/InputAdornment";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import CircularProgress from "@mui/material";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
