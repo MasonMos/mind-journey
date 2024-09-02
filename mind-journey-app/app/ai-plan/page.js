@@ -105,38 +105,6 @@ export default function Home() {
         body: JSON.stringify([...messages, { role: 'user', content: message }]),
       })
 
-      // // Added conditional responses based on user input
-      if (message.toLowerCase().includes('membership') || message.toLowerCase().includes('pricing')) {
-        setMessages((messages) => [
-          ...messages,
-          {
-            role: 'assistant',
-            content: `Here are the membership options available on our platform:
-    
-          1. **Basic Membership** - $0/month
-            - Access to basic features
-            - Email support
-            - Monthly newsletters
-            - Access to basic event planning
-          
-          2. Premium Membership - $15/month
-            - Access to all features
-            - Priority email support
-            - Weekly newsletters
-            - Access to exclusive event planning
-          
-          3. VIP Membership - $35/month
-            - Access to all features
-            - 24/7 priority support
-            - Daily newsletters
-            - Access to exclusive content
-            - Personalized event planning assistance with locations, activities, and more
-          
-          If you have any further questions or need assistance with something else, feel free to ask!`,
-          },
-        ]);
-      }
-
       if (!response.ok) {
         throw new Error('Network response was not ok')
       }
@@ -202,8 +170,6 @@ export default function Home() {
         justifyContent="center"
         alignItems="center"
       >
-        {/* <h1 sx={{bgcolor:theme.palette.primary.main, color:theme.palette.primary.light}}color='theme.palette.primary.light' spacing={3} gap={3}>Chat with us in real time!</h1> */}
-
         <Stack
         sx = {{
           boxShadow: 3,
