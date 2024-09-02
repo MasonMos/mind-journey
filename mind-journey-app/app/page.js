@@ -263,12 +263,6 @@ export default function Home() {
               <Highlight className="text-white dark:text-white">life changing</Highlight> <br />
               difference with<br />
               your health
-              Make a{" "}
-              <Highlight className="text-white dark:text-white">
-                life changing
-              </Highlight>{" "}
-              <br /> difference with
-              <br /> your health
             </motion.h1>
           </HeroHighlight>
 
