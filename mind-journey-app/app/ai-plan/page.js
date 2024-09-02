@@ -20,13 +20,10 @@ import { Jost } from "next/font/google";
 import Link from "next/link";
 import Image from 'next/image';
 
-
-
 const jost = Jost({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700'],
 });
-
 
 const theme = createTheme({
     typography: {
@@ -135,6 +132,40 @@ export const Icon = ({ className, ...rest }) => {
 export default function Plan() {
   const { isLoading, isSignedIn, user } = useUser();
   const [membership, setMembership] = useState("Free")
+  const [titles, setTitles] = useState(["Loading...", "Loading...", "Loading..."]);
+
+  // const generateCardTitles = () => {
+    useEffect(() => {
+      const fetchTitles = async () => {
+        try {
+          const response = await fetch('/api/generate-titles', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              prompt: 'Generate 3 creative titles for meditation/relaxation cards that encourage mental well-being.',
+            }),
+          });
+    
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+    
+          const data = await response.json();
+          console.log('Data received:', data); // Log data to verify
+          setTitles(data.titles); // Assuming the API returns a JSON object with a 'titles' array
+        } catch (error) {
+          console.error('Error fetching titles:', error);
+          setTitles(["Error", "Error", "Error"]); // Fallback in case of error
+        }
+      };
+    
+      fetchTitles();
+    }, []);
+    
+  // }
+
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -331,11 +362,6 @@ export default function Plan() {
           spacing={3}
         >
           <Stack
-            // direction={'column'}
-            // spacing={2}
-            // flexGrow={1}
-            // overflow="auto"
-            // maxHeight="100%"
             className="scrollable"
             direction={'column'}
             spacing={2}
@@ -430,10 +456,13 @@ export default function Plan() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      position="absolute"
+      marginTop="10vh"
     >
       <Typography variant="h3" sx={{color: theme.palette.primary.contrastText, marginTop: "18vh"}} className={jost.className}>Daily Meditation and Practice Cards</Typography>
 
-      <Grid>
+      <Grid
+      >
         <Box
           width="80vw"
           height="80vh"
@@ -442,15 +471,15 @@ export default function Plan() {
           justifyContent="center"
           alignItems="center"
         >
-          <div className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-white w-full gap-4 mx-auto px-8 rounded-md">
-            <Card title="Sheetal is Nisha" icon={<AceternityIcon />}>
+          <div position="relative" className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-white w-full gap-4 mx-auto px-8 rounded-md">
+            <Card title={titles[0]} icon={<AceternityIcon />}>
               <CanvasRevealEffect
                 animationSpeed={2.5}
                 containerClassName="bg-emerald-900"
                 dotSize={1}
               />
             </Card>
-            <Card title="Nisha is Munni" icon={<AceternityIcon />}>
+            <Card title={titles[1]} icon={<AceternityIcon />}>
               <CanvasRevealEffect
                 animationSpeed={2.5}
                 containerClassName="bg-zinc-900"
@@ -461,9 +490,9 @@ export default function Plan() {
                 dotSize={2}
               />
               {/* Radial gradient for the cute fade */}
-              <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
+              <div position="relative" className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
-            <Card title="Munni is Aditi" icon={<AceternityIcon />}>
+            <Card title={titles[2]} icon={<AceternityIcon />}>
               <CanvasRevealEffect
                 animationSpeed={2.5}
                 containerClassName="bg-sky-600"
