@@ -341,7 +341,7 @@ export default function Plan() {
 
 
        
-    <Box>
+    <Box marginBottom="10vh">
       <Box
         width="100vw"
         height="100vh"
@@ -350,7 +350,30 @@ export default function Plan() {
         justifyContent="center"
         alignItems="center"
       >
-        <Typography variant="h3" sx={{color: theme.palette.primary.contrastText, margin: 10}} className={jost.className}>AI-Powered Mental Health Planning</Typography>
+        <Typography
+          variant="h3"
+          sx={{
+            color: theme.palette.primary.contrastText,
+            marginBottom: {
+              xs: '4vh',  // Larger margin for extra small screens
+              sm: '5vh',  // Larger margin for small screens
+              md: '6vh',  // Even larger margin for medium screens
+              lg: '7vh',  // Larger margin for large screens
+              xl: '8vh'   // Maximum margin for extra large screens
+            },
+            fontSize: {
+              xs: '1.5rem', // Smaller font size for extra small screens
+              sm: '1.75rem', // Slightly larger font size for small screens
+              md: '2rem',    // Default font size for medium screens
+              lg: '2.5rem',  // Larger font size for large screens
+              xl: '3rem'     // Largest font size for extra large screens
+            }
+          }}
+          className={jost.className}
+        >
+          AI-Powered Mental Health Planning
+        </Typography>
+
 
         <Stack
         sx = {{
@@ -452,60 +475,93 @@ export default function Plan() {
     </Box>
 
 
-    <Box 
-      width="100vw"
-      height="100vh"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      position="absolute"
-      marginTop="10vh"
-    >
-      <Typography variant="h3" sx={{color: theme.palette.primary.contrastText, marginTop: "18vh"}} className={jost.className}>Daily Meditation and Practice Cards</Typography>
+    <Grid 
+  width="100vw"
+  height="auto"
+  display="flex"
+  flexDirection="column"
+  justifyContent="center"
+  alignItems="center"
+  paddingTop="10vh"  // Adds space from the top of the viewport
+  paddingBottom="10vh"
+  position="relative"  // Changed to relative to manage the layout better
+  sx={{ backgroundColor: "white" }}
+>
+  <Typography
+    variant="h3"
+    sx={{
+      color: "black",
+      marginBottom: {
+        xs: '4vh',  // Larger margin for extra small screens
+        sm: '5vh',  // Larger margin for small screens
+        md: '6vh',  // Even larger margin for medium screens
+        lg: '7vh',  // Larger margin for large screens
+        xl: '8vh'   // Maximum margin for extra large screens
+      },
+      fontSize: {
+        xs: '1.25rem', // Smaller font size for extra small screens
+        sm: '1.5rem', // Slightly larger font size for small screens
+        md: '1.75rem', // Default font size for medium screens
+        lg: '2rem',  // Larger font size for large screens
+        xl: '2.5rem' // Largest font size for extra large screens
+      }
+    }}
+    className={jost.className}
+  >
+    AI-Generated Meditation and Practice Cards
+  </Typography>
 
-      <Grid
-      >
-        <Box
-          width="80vw"
-          height="80vh"
-          display="flex"
-          flexDirection="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <div position="relative" className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-white w-full gap-4 mx-auto px-8 rounded-md">
-          <Card title={titles[0]} icon={<MoonIcon />} >
-            <CanvasRevealEffect
-              animationSpeed={2.5}
-              containerClassName="bg-emerald-900"
-              dotSize={1}
-            />
-          </Card> 
-            <Card title={titles[1]} icon={<MoonIcon />} >
-              <CanvasRevealEffect
-                animationSpeed={2.5}
-                containerClassName="bg-sky-600"
-                colors={[[125, 211, 252]]}
-                dotSize={2}
-              />
-              <div position="relative" className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
-            </Card>
-            <Card title={titles[2]} icon={<MoonIcon />}>
-              <CanvasRevealEffect
-                animationSpeed={2.5}
-                containerClassName="bg-zinc-900"
-                colors={[
-                  [236, 72, 153],
-                  [232, 121, 249],
-                ]}
-                dotSize={3}
-              />
-            </Card>
-          </div>
-        </Box>
+  <Box
+    width="85vw" // Ensures the Box takes the full viewport width
+    height="auto" // Adapts height based on content
+    display="flex"
+    flexDirection="row"
+    justifyContent="center"
+    alignItems="center"
+    overflow="auto" // Enables scrolling if content overflows
+  >
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
+      <Grid item xs={12} sm={6} md={4} lg={4}>
+        <Card title={titles[0]} icon={<MoonIcon />} >
+          <CanvasRevealEffect
+            animationSpeed={2.5}
+            containerClassName="bg-emerald-900"
+            dotSize={1}
+          />
+        </Card> 
       </Grid>
-    </Box>
+      
+      <Grid item xs={12} sm={6} md={4} lg={4}>
+        <Card title={titles[1]} icon={<MoonIcon />} >
+          <CanvasRevealEffect
+            animationSpeed={2.5}
+            containerClassName="bg-sky-600"
+            colors={[[125, 211, 252]]}
+            dotSize={2}
+          />
+          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4} lg={4}>
+        <Card title={titles[2]} icon={<MoonIcon />}>
+          <CanvasRevealEffect
+            animationSpeed={2.5}
+            containerClassName="bg-zinc-900"
+            colors={[
+              [236, 72, 153],
+              [232, 121, 249],
+            ]}
+            dotSize={3}
+          />
+        </Card>
+      </Grid>
+    </Grid>
+  </Box>
+</Grid>
+
+
+
 
     </Container>
   )
