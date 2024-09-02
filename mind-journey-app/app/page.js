@@ -37,8 +37,12 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 
+import {firestore} from '@/firebase';
+
 import { Jost } from "next/font/google";
 import Link from "next/link";
+import { useEffect } from "react";
+import { doc, setDoc } from "firebase/firestore";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -181,6 +185,23 @@ export default function Home() {
   if (isLoading) {
     return <div>Loading...</div>; // client-side loading state
   }
+
+  const addUser = async() => {
+
+    if(isSignedIn)
+    {
+      console.log("Signed in")
+      const docRef = doc(firestore, 'users', user.id)
+      await setDoc(docRef, {}, {merge: true})
+    }
+    else{
+      console.log("Not signed in")
+    }
+  }
+
+  useEffect(() => {
+    addUser()
+  }, [isSignedIn])
 
   return (
     <Container
