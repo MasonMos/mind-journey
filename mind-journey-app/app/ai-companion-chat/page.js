@@ -14,8 +14,6 @@ import { Container, Grid, AppBar, Toolbar, Box, Button, Stack, Typography, TextF
 import { createTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { BackgroundBeamsWithCollision } from '@/components/ui/background-beams-with-collision';
-
 import { Jost } from "next/font/google";
 import Link from "next/link";
 import Image from 'next/image';
@@ -227,7 +225,6 @@ export default function Chat() {
         </Toolbar>
       </AppBar>
 
-      <BackgroundBeamsWithCollision>
       <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '85vh', width: '100vw'}}>
         <Box>
           <h1 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
@@ -249,7 +246,6 @@ export default function Chat() {
           </h3>
         </Box>
       </Grid>
-    </BackgroundBeamsWithCollision>
 
     <Box>
       <Box
