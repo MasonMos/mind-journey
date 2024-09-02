@@ -15,6 +15,29 @@
       --background-end-rgb: 119, 20, 176; /* #7714B0 */
     }
   }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Adjust gap for smaller screens */
+    padding: 0.5rem; /* Adjust padding for smaller screens */
+  }
+  
+  .card-container .card {
+    width: calc(33.33% - 1rem); /* Adjust card width */
+    /* Add styles for card text size if needed */
+  }
+  
+  @media (max-width: 400px) {
+    .card-container .card {
+      width: 100%; /* Make cards full width on very small screens */
+      padding: 0.5rem; /* Reduce padding for smaller screens */
+      font-size: 0.75rem; /* Adjust text size */
+    }
+  }
+  
   
   body {
     color: rgb(var(--foreground-rgb));

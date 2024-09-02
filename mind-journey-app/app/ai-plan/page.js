@@ -19,6 +19,7 @@ import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { Jost } from "next/font/google";
 import Link from "next/link";
 import Image from 'next/image';
+import { Moon } from 'lucide-react';
 
 const jost = Jost({
   subsets: ['latin'],
@@ -91,27 +92,18 @@ const Card = ({
   );
 };
  
-const AceternityIcon = () => {
+const MoonIcon = () => {
   return (
-    <svg
+    <img
+      src="/moon.svg" // Path relative to the public directory
+      alt="Moon Icon"
       width="66"
       height="65"
-      viewBox="0 0 66 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-10 w-10 text-black dark:text-white group-hover/canvas-card:text-white "
-    >
-      <path
-        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-        stroke="currentColor"
-        strokeWidth="15"
-        strokeMiterlimit="3.86874"
-        strokeLinecap="round"
-        style={{ mixBlendMode: "darken" }}
-      />
-    </svg>
+      className="h-10 w-10 text-black dark:text-white group-hover/canvas-card:text-white"
+    />
   );
 };
+
  
 export const Icon = ({ className, ...rest }) => {
   return (
@@ -134,67 +126,43 @@ export default function Plan() {
   const [membership, setMembership] = useState("Free")
   const [titles, setTitles] = useState(["Loading Practices...", "Loading Meditation...", "Loading Happiness..."]);
 
-  // const generateCardTitles = () => {
-    // useEffect(() => {
-    //   const fetchTitles = async () => {
-    //     try {
-    //       const response = await fetch('/api/generate_cards', {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //           prompt: 'Generate 3 creative titles for meditation/relaxation cards that encourage mental well-being.',
-    //         }),
-    //       });
-    
-    //       if (!response.ok) {
-    //         throw new Error(`HTTP error! status: ${response.status}`);
-    //       }
-    
-    //       const data = await response.json();
-    //       console.log('Data received:', data); // Log data to verify
-    //       setTitles(data.titles || ["Error", "Error", "Error"]); // Ensure titles are set properly
-    //     } catch (error) {
-    //       console.error('Error fetching titles:', error);
-    //       setTitles(["Error", "Error", "Error"]); // Fallback in case of error
-    //     }
-    //   };
-    
-    //   fetchTitles();
-    // }, []);
-
     useEffect(() => {
       const fetchTitles = async () => {
         try {
-          const response = await fetch('/api/generate_cards', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              prompt: 'Generate 3 creative titles for meditation/relaxation cards that encourage mental well-being.',
+          const responses = await Promise.all([
+            fetch('/api/generate_cards', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 3 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
+              }),
             }),
-          });
-  
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-  
-          const data = await response.json();
-          console.log('Data received:', data); // Log data to verify
-          setTitles(data.titles); // Assuming the API returns a JSON object with a 'titles' array
+            fetch('/api/generate_cards', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 3 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
+              }),
+            }),
+            fetch('/api/generate_cards', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 3 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
+              }),
+            }),
+          ]);
+      
+          const data = await Promise.all(responses.map(res => res.json()));
+          setTitles(data.map(d => d.titles[0])); // Assuming API returns a single title
         } catch (error) {
           console.error('Error fetching titles:', error);
           setTitles(["Error", "Error", "Error"]); // Fallback in case of error
         }
       };
-  
       fetchTitles();
     }, []);
     
-  // }
-
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -339,7 +307,13 @@ export default function Plan() {
   }
 
   return (  
-    <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
+    <Container
+    maxWidth="100vw"
+    disableGutters
+    sx={{ padding: 0, overflowX: 'hidden' }}
+    className={jost.className}
+  >
+
         <AppBar position="sticky" sx={{backgroundColor: "#181818", color:theme.palette.primary.contrastText}}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
@@ -501,24 +475,23 @@ export default function Plan() {
           alignItems="center"
         >
           <div position="relative" className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-white w-full gap-4 mx-auto px-8 rounded-md">
-            <Card title={titles} icon={<AceternityIcon />}>
-              <CanvasRevealEffect
-                animationSpeed={2.5}
-                containerClassName="bg-emerald-900"
-                dotSize={1}
-              />
-            </Card>
-            <Card title={titles} icon={<AceternityIcon />}>
+          <Card title={titles[0]} icon={<MoonIcon />} >
+            <CanvasRevealEffect
+              animationSpeed={2.5}
+              containerClassName="bg-emerald-900"
+              dotSize={1}
+            />
+          </Card> 
+            <Card title={titles[1]} icon={<MoonIcon />} >
               <CanvasRevealEffect
                 animationSpeed={2.5}
                 containerClassName="bg-sky-600"
                 colors={[[125, 211, 252]]}
                 dotSize={2}
               />
-              {/* Radial gradient for the cute fade */}
               <div position="relative" className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
-            <Card title={titles} icon={<AceternityIcon />}>
+            <Card title={titles[2]} icon={<MoonIcon />}>
               <CanvasRevealEffect
                 animationSpeed={2.5}
                 containerClassName="bg-zinc-900"
@@ -530,40 +503,10 @@ export default function Plan() {
               />
             </Card>
           </div>
-
-          <div className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-white w-full gap-4 mx-auto px-8 rounded-md">
-            <Card title={titles[0]} icon={<AceternityIcon />}>
-              <CanvasRevealEffect
-                animationSpeed={2.5}
-                containerClassName="bg-emerald-900"
-                dotSize={1}
-              />
-            </Card>
-            <Card title={titles[1]} icon={<AceternityIcon />}>
-              <CanvasRevealEffect
-                animationSpeed={2.5}
-                containerClassName="bg-sky-600"
-                colors={[[125, 211, 252]]}
-                dotSize={2}
-              />
-              <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
-            </Card>
-            <Card title={titles[2]} icon={<AceternityIcon />}>
-              <CanvasRevealEffect
-                animationSpeed={2.5}
-                containerClassName="bg-zinc-900"
-                colors={[
-                  [236, 72, 153],
-                  [232, 121, 249],
-                ]}
-                dotSize={3}
-              />
-            </Card>
-          </div>
-
         </Box>
       </Grid>
     </Box>
+
     </Container>
   )
 }
