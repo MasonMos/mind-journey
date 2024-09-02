@@ -27,7 +27,7 @@ import {
 import Divider from "@mui/material/Divider";
 import { createTheme } from "@mui/material/styles";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import db from "@/firebase";
+import { db } from "@/firebase";
 
 import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
@@ -153,13 +153,13 @@ export default function Home() {
       const querySnapshot = await getDocs(
         query(collection(db, "waitlist"), where("email", "==", email))
       );
-  
+
       if (!querySnapshot.empty) {
         // Email already exists
         window.alert("This email is already on the waitlist.");
         return;
       }
-  
+
       // Add the email to Firestore
       const docRef = await addDoc(collection(db, "waitlist"), {
         email: email,
@@ -173,23 +173,33 @@ export default function Home() {
     }
   };
 
-    // Use a fallback UI for the initial render to ensure consistency
-    if (typeof window === "undefined") {
-      return <div>Loading...</div>; // server-side rendering fallback
-    }
-  
-    if (isLoading) {
-      return <div>Loading...</div>; // client-side loading state
-    }
+  // Use a fallback UI for the initial render to ensure consistency
+  if (typeof window === "undefined") {
+    return <div>Loading...</div>; // server-side rendering fallback
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>; // client-side loading state
+  }
 
   return (
-    <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
+    <Container
+      maxWidth="100vw"
+      style={{ padding: 0 }}
+      className={jost.className}
+    >
       <Head maxWidth="100vw">
         <title>mindjourney</title>
-        <meta name = "description" content = "AI-powered mental health" />
+        <meta name="description" content="AI-powered mental health" />
       </Head>
 
-      <AppBar position="sticky" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
+      <AppBar
+        position="sticky"
+        sx={{
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
+        }}
+      >
         <Toolbar>
           <Box
             sx={{
@@ -202,12 +212,69 @@ export default function Home() {
             <Image src="/moon.svg" alt="logo" width="20" height="20" />
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
-            <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
-            <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
-            <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
-            <Button color="inherit" href="contact" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>contact</Button>
+          <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightBold,
+                mr: 2,
+              }}
+            >
+              mindjourney
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightLight,
+                ml: 1,
+                mr: 2,
+              }}
+            >
+              |
+            </Typography>
+            <Button
+              color="inherit"
+              href="features"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              features
+            </Button>
+            <Button
+              color="inherit"
+              href="pricing"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              pricing
+            </Button>
+            <Button
+              color="inherit"
+              href="contact"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              contact
+            </Button>
           </Box>
 
           <SignedOut>
@@ -273,15 +340,24 @@ export default function Home() {
               transition={{ duration: 0.25, ease: [0.4, 0.0, 0.2, 1] }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-regular text-neutral-700 text-white light:text-white max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl leading-snug md:leading-relaxed mx-auto px-4 sm:px-6 md:px-8"
             >
-              Make a {" "}
-              <Highlight className="text-white dark:text-white">life changing</Highlight> <br />
-              difference with<br />
+              Make a{" "}
+              <Highlight className="text-white dark:text-white">
+                life changing
+              </Highlight>{" "}
+              <br />
+              difference with
+              <br />
               your health
             </motion.h1>
           </HeroHighlight>
 
-
-          <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
+          <Typography variant="h7">
+            Our AI-driven mental health support is here to provide a lifeline,
+            offering
+            <br /> understanding, compassion, and guidance when you need it
+            most.
+            <br />
+          </Typography>
         </Box>
 
         <Box
@@ -333,14 +409,13 @@ export default function Home() {
         />
       </Grid>
 
-
-      <Box 
-        height="80vh" 
-        width="80vw" 
+      <Box
+        height="80vh"
+        width="80vw"
         margin="auto"
-        sx={{ 
+        sx={{
           backgroundColor: "#f5f5f5", // Light background color for better contrast
-          borderRadius: "12px", 
+          borderRadius: "12px",
           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
           display: "flex",
           flexDirection: "column",
@@ -523,12 +598,26 @@ export default function Home() {
             }}
           >
             {[
-              { name: 'features', path: 'http://localhost:3000/features' },
-              { name: 'pricing', path: 'http://localhost:3000/pricing' },
-              { name: 'github', path: 'https://github.com/MasonMos/mind-journey' },
-              { name: 'contact', path: 'http://localhost:3000/contact' }
-            ].map(link => (
-              <Link key={link.name} color="inherit" href={link.path} sx={{ color: 'white', fontFamily: jost.style.fontFamily, fontWeight: 'light', textTransform: 'none', marginBottom: 1, }}>
+              { name: "features", path: "http://localhost:3000/features" },
+              { name: "pricing", path: "http://localhost:3000/pricing" },
+              {
+                name: "github",
+                path: "https://github.com/MasonMos/mind-journey",
+              },
+              { name: "contact", path: "http://localhost:3000/contact" },
+            ].map((link) => (
+              <Link
+                key={link.name}
+                color="inherit"
+                href={link.path}
+                sx={{
+                  color: "white",
+                  fontFamily: jost.style.fontFamily,
+                  fontWeight: "light",
+                  textTransform: "none",
+                  marginBottom: 1,
+                }}
+              >
                 {link.name}
               </Link>
             ))}
