@@ -14,8 +14,6 @@ import { Container, Grid, AppBar, Toolbar, Box, Button, Stack, Typography, TextF
 import { createTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { BackgroundBeamsWithCollision } from '@/components/ui/background-beams-with-collision';
-
 import { Jost } from "next/font/google";
 import Link from "next/link";
 import Image from 'next/image';
@@ -54,6 +52,14 @@ const sendIcon = '/images/send.png';
 export default function Chat() {
     const { isLoading, isSignedIn, user } = useUser();
     const [membership, setMembership] = useState("Free")
+    const [message, setMessage] = useState('')
+
+    const [messages, setMessages] = useState([
+      {
+        role: 'assistant',
+        content: "Welcome to mindjourney! I'm Aeryn, your personal AI Companion, here to help you get through your day. Ask me anything and I'll try my best to help you out. What's on your mind today?",
+      },
+    ]);
 
     useEffect (() => {
       if (!user?.id) {
@@ -84,7 +90,7 @@ export default function Chat() {
         return(
           <Container maxWidth="100vw" sx={{color:theme.palette.primary.contrastText}}>
     
-            <AppBar position="static" sx={{backgroundColor: theme.palette.primary.dark, color:theme.palette.primary.contrastText}}>
+            <AppBar position="static" sx={{backgroundColor: "#181818", color:theme.palette.primary.contrastText}}>
               <Toolbar>
                 <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
                   <Image src="/moon.svg" alt="logo" width="20" height="20" />
@@ -112,14 +118,6 @@ export default function Chat() {
           </Container>
         );
       }
-
-  const [messages, setMessages] = useState([
-    {
-      role: 'assistant',
-      content: "Welcome to mindjourney! I'm Aeryn, your personal AI Companion, here to help you get through your day. Ask me anything and I'll try my best to help you out. What's on your mind today?",
-    },
-  ])
-  const [message, setMessage] = useState('')
 
   const sendMessage = async () => {
     if (!message.trim()) return;  // Don't send empty messages
@@ -169,37 +167,6 @@ export default function Chat() {
         body: JSON.stringify([...messages, { role: 'user', content: message }]),
       })
 
-      // Added conditional responses based on user input
-      if (message.toLowerCase().includes('membership') || message.toLowerCase().includes('pricing')) {
-        setMessages((messages) => [
-          ...messages,
-          {
-            role: 'assistant',
-            content: `Here are the membership options available on our platform:
-    
-          1. **Basic Membership** - $0/month
-            - Access to basic features
-            - Email support
-            - Monthly newsletters
-            - Access to basic event planning
-          
-          2. Premium Membership - $15/month
-            - Access to all features
-            - Priority email support
-            - Weekly newsletters
-            - Access to exclusive event planning
-          
-          3. VIP Membership - $35/month
-            - Access to all features
-            - 24/7 priority support
-            - Daily newsletters
-            - Access to exclusive content
-            - Personalized event planning assistance with locations, activities, and more
-          
-          If you have any further questions or need assistance with something else, feel free to ask!`,
-          },
-        ]);
-      }
 
       if (!response.ok) {
         throw new Error('Network response was not ok')
@@ -233,7 +200,7 @@ export default function Chat() {
   return (      
 
     <Container maxWidth="100vw" style={{padding: 0}} className={jost.className}>
-        <AppBar position="sticky" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
+        <AppBar position="sticky" sx={{backgroundColor: "#181818", color:theme.palette.primary.contrastText}}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
               <Image src="/moon.svg" alt="logo" width="20" height="20" />
@@ -258,7 +225,6 @@ export default function Chat() {
         </Toolbar>
       </AppBar>
 
-      <BackgroundBeamsWithCollision>
       <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '85vh', width: '100vw'}}>
         <Box>
           <h1 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
@@ -280,7 +246,6 @@ export default function Chat() {
           </h3>
         </Box>
       </Grid>
-    </BackgroundBeamsWithCollision>
 
     <Box>
       <Box

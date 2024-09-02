@@ -3,11 +3,44 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import Link from "next/link";
+import { Typography, Button } from "@mui/material";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+
+import { createTheme } from "@mui/material/styles";
+import { Jost } from "next/font/google";
+
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+});
+
+const theme = createTheme({
+    typography: {
+      fontFamily: 'Jost !important',
+      fontWeightLight: 100, 
+      fontWeightRegular: 300, 
+      fontWeightMedium: 400, 
+      fontWeightBold: 500, 
+    },
+    palette: {
+      primary: {
+        light: '#403838',
+        main: '#573F66',
+        dark: '#3F1658',
+        contrastText: '#ffffff',
+      },
+      secondary: {
+        light: '#588DE2',
+        main: '#3B68B0',
+        dark: '#0B367C',
+        contrastText: '#F6F4DC',
+      },
+    },
+  });
 
 export default function FeaturesSectionDemo() {
   const features = [
@@ -22,7 +55,7 @@ export default function FeaturesSectionDemo() {
     {
       title: "AI-Personalized Mental Health Plans, Guided Meditation, and Relaxation Techniques",
       description:
-        "Our AI-powered health companion offers personalized mental health plans, guided meditation, and relaxation techniques to help you improve your mental well-being. Our platform leverages cutting-edge models to deliver a seamless experience.",
+        "Our AI-powered health companion offers personalized mental health plans, guided meditation, and relaxation techniques to help you improve your mental well-being. Our platform leverages cutting-edge models to deliver a seamless experience. ",
       skeleton: <SkeletonTwo />,
       className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
     },
@@ -141,9 +174,9 @@ export const SkeletonThree = () => {
         className="w-full  mx-auto bg-transparent dark:bg-transparent group h-full">
         <div className="flex flex-1 w-full h-full flex-col space-y-2  relative">
           {/* TODO */}
-          <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto " />
+          <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto opacity-85" />
           <Image
-            // src="https://assets.aceternity.com/fireship.jpg"
+            src="/images/youtube.png"
             alt="header"
             width={800}
             height={800}
@@ -156,11 +189,12 @@ export const SkeletonThree = () => {
 
 export const SkeletonTwo = () => {
   const images = [
-    // "https://images.unsplash.com/photo-1517322048670-4fba75cbbb62?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    // "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=3425&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    // "https://images.unsplash.com/photo-1555400038-63f5ba517a47?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    // "https://images.unsplash.com/photo-1554931670-4ebfabf6e7a9?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    // "https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=80&w=2581&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "/images/meditation1.png",
+    "/images/meditation2.png",
+    "/images/meditation3.png",
+    "/images/desc2.png",
+    "/images/chatbot1.png",
+    "/images/chatbot1.png",
   ];
 
   const imageVariants = {
@@ -176,26 +210,27 @@ export const SkeletonTwo = () => {
     },
   };
   return (
-    (<div
-      className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
-      {/* TODO */}
+    <Link href="/ai-plan" className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
+      {/* Existing content */}
       <div className="flex flex-row -ml-20">
         {images.map((image, idx) => (
           <motion.div
-            variants={imageVariants}
             key={"images-first" + idx}
+            variants={imageVariants}
+            whileHover="whileHover"
+            whileTap="whileTap"
             style={{
               rotate: Math.random() * 20 - 10,
             }}
-            whileHover="whileHover"
-            whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden">
+            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
+          >
             <Image
               src={image}
-              alt="bali images"
+              alt="demo images"
               width="500"
               height="500"
-              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0" />
+              className="rounded-lg h-30 w-30 md:h-40 md:w-40 object-cover flex-shrink-0"
+            />
           </motion.div>
         ))}
       </div>
@@ -209,108 +244,58 @@ export const SkeletonTwo = () => {
             variants={imageVariants}
             whileHover="whileHover"
             whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden">
+            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
+          >
             <Image
               src={image}
               alt="bali images"
               width="500"
               height="500"
-              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0" />
+              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+            />
           </motion.div>
         ))}
       </div>
-      <div
-        className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
-      <div
-        className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
-    </div>)
+      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent h-full pointer-events-none" />
+      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black to-transparent h-full pointer-events-none" />
+    </Link>
   );
 };
 
 export const SkeletonFour = () => {
   return (
-    (<div
+    (
+    <Link  className="absolute text-white h-40 md:h-40  flex flex-col items-center relative bg-transparent dark:bg-transparent mt-0" href="/ai-companion-chat">
+    <div
       className="h-60 md:h-60  flex flex-col items-center relative bg-transparent dark:bg-transparent mt-10">
-      <Globe className="absolute -right-15 md:-right-15 -bottom-65 md:-bottom-65" />
-      <Link  className="absolute text-white h-40 md:h-40  flex flex-col items-center relative bg-transparent dark:bg-transparent mt-0" href="/ai-companion-chat">Click here to try it out.</Link>
-    </div>)
-  );
-};
+     
+      <h1 className="text-2xl relative z-20 md:text-4xl lg:text-5xl font-bold text-center text-black dark:text-white font-sans tracking-tight mt-12">
+        {" "}
+        <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
+          <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
+            <span className="">Introducing Aeryn</span>
+          </div>
+          <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+            <span className="">Introducing Aeryn</span>
+          </div>
+        </div>
+      </h1>
 
-export const Globe = ({
-  className
-}) => {
-  const canvasRef = useRef(null);
+      <h3 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
+        <div>
+          <Typography variant="h5" sx={{color:theme.palette.primary.main, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, marginBottom: 5}}>Your Personal AI Companion, powered by OpenAI GPT 3.5 Turbo | Free Users</Typography>
+        </div>
+      </h3>
 
-  useEffect(() => {
-    let phi = 0;
-
-    if (!canvasRef.current) return;
-
-    const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: 500 * 2,
-      height: 500 * 2,
-      phi: 0,
-      theta: 0,
-      dark: 1,
-      diffuse: 1,
-      mapSamples: 16000,
-      mapBrightness: 2,
-      baseColor: [0.3, 0.3, 0.3],
-      markerColor: [0.6, 0.6, 1],
-      glowColor: [0.6, 0.6, 1],
-      markers: [
-        // longitude latitude
-
-        // North America
-        { location: [37.7595, -122.4367], size: 0.03 }, // San Francisco, USA
-        { location: [40.7128, -74.0060], size: 0.1 },  // New York, USA
-        { location: [34.0522, -118.2437], size: 0.05 }, // Los Angeles, USA
-
-        // South America
-        { location: [-23.5505, -46.6333], size: 0.05 }, // São Paulo, Brazil
-        { location: [-34.6037, -58.3816], size: 0.06 }, // Buenos Aires, Argentina
-
-        // Europe
-        { location: [51.5074, -0.1278], size: 0.07 }, // London, UK
-        { location: [48.8566, 2.3522], size: 0.06 }, // Paris, France
-        { location: [52.5200, 13.4050], size: 0.05 }, // Berlin, Germany
-        { location: [40.4168, -3.7038], size: 0.04 }, // Madrid, Spain
-
-        // Africa
-        { location: [30.0444, 31.2357], size: 0.05 }, // Cairo, Egypt
-        { location: [6.5244, 3.3792], size: 0.04 }, // Lagos, Nigeria
-
-        // Asia
-        { location: [35.6828, 139.7590], size: 0.07 }, // Tokyo, Japan
-        { location: [39.9042, 116.4074], size: 0.06 }, // Beijing, China
-        { location: [28.6139, 77.2090], size: 0.05 }, // Delhi, India
-
-        // Australia
-        { location: [-33.8688, 151.2093], size: 0.06 }, // Sydney, Australia
-
-        // Antarctica
-        { location: [-90.0000, 0.0000], size: 0.03 }, // South Pole
-
-      ],
-      onRender: (state) => {
-        // Called on every animation frame.
-        // `state` will be an empty object, return updated params.
-        state.phi = phi;
-        phi += 0.015;
-      },
-    });
-
-    return () => {
-      globe.destroy();
-    };
-  }, []);
-
-  return (
-    (<canvas
-      ref={canvasRef}
-      style={{ width: 500, height: 500, maxWidth: "100%", aspectRatio: 1 }}
-      className={className} />)
+      <HoverBorderGradient
+        containerClassName="rounded-full"
+        as="button"
+        className="text-white flex items-center space-x-4"
+      >
+        <Link href="/ai-companion-chat">Try it out now!</Link>
+      </HoverBorderGradient>    
+    </div>
+    </Link>
+    )
   );
 };

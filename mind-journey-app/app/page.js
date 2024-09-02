@@ -26,7 +26,7 @@ import {
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { createTheme } from "@mui/material/styles";
-import { getFirestore, collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import db from "@/firebase";
 
 import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
@@ -311,68 +311,6 @@ export default function Home() {
         </Box>
       </Grid>
 
-      
-      
-
-      {/* Waitlist Component will go here */}
-      <Grid margin={10}>
-        <Typography
-          variant="h4"
-          color={theme.palette.secondary.contrastText}
-          sx={{
-            position: "flex",
-            alignContent: "center",
-            justifyContent: "center",
-          }}
-        >
-          Join the Waitlist
-        </Typography>
-
-        <TextField
-          label="Email"
-          variant="outlined"
-          onChange={(e) => setEmail(e.target.value)}
-          sx={{
-            width: "50%",
-            margin: "left",
-            display: "flex",
-            justifyContent: "center",
-            mt: 3,
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "white", // Default border color
-                borderRadius: "50px",
-              },
-              "&:hover fieldset": {
-                borderColor: "white", // Hover border color
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "white", // Focused border color
-              },
-              "& input": {
-                color: "white",
-                fontFamily: jost.style.fontFamily,
-              },
-            },
-          }}
-          InputLabelProps={{
-            style: { color: "white" },
-            fontFamily: jost.style.fontFamily,
-          }}
-        />
-
-        <Box sx={{ mt: 2 }}>
-          <HoverBorderGradient
-            containerClassName="rounded-full"
-            as="button"
-            className="text-white flex items-center space-x-4"
-            onClick={() => addEmail(email)}
-          >
-            Submit
-          </HoverBorderGradient>
-        </Box>
-      </Grid>
-
       {/* Features Section */}
       <Grid margin={10} spacing={10} gap="15" ml="10">
         <Typography variant="h4" color={theme.palette.secondary.contrastText}>
@@ -394,6 +332,75 @@ export default function Home() {
           }}
         />
       </Grid>
+
+
+      <Box 
+        height="80vh" 
+        width="80vw" 
+        margin="auto"
+        sx={{ 
+          backgroundColor: "#f5f5f5", // Light background color for better contrast
+          borderRadius: "12px", 
+          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          p: 4,
+          mb: 10, // Added margin-bottom to create space below the component
+        }}
+      >
+        <Typography
+          variant="h4"
+          color="textPrimary"
+          sx={{
+            mb: 3,
+            fontWeight: "bold",
+          }}
+        >
+          Join the Waitlist
+        </Typography>
+
+        <TextField
+          label="Email"
+          variant="outlined"
+          onChange={(e) => setEmail(e.target.value)}
+          sx={{
+            width: "100%",
+            maxWidth: "400px",
+            mb: 3,
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#ddd", // Light border color
+                borderRadius: "8px",
+              },
+              "&:hover fieldset": {
+                borderColor: "#888", // Darker border color on hover
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#007bff", // Primary color for focused border
+              },
+              "& input": {
+                color: "#333",
+                fontFamily: "Arial, sans-serif",
+              },
+            },
+          }}
+          InputLabelProps={{
+            style: { color: "#333" },
+            fontFamily: "Arial, sans-serif",
+          }}
+        />
+
+        <HoverBorderGradient
+          containerClassName="rounded-full"
+          as="button"
+          className="text-white flex items-center justify-center px-6 py-2 mt-2"
+          onClick={() => addEmail(email)}
+        >
+          Submit
+        </HoverBorderGradient>
+      </Box>
 
       {/* need to work on foot to match the styling on figma */}
       <footer>
