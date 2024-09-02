@@ -48,7 +48,7 @@ import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
 const systemPrompt = `
-Generate 3 mental health meditations/relaxation practices to help users improve their mental well-being. Each card should contain a mental health tip, mindfulness exercise, or self-care practice.
+Generate 3 creative titles for meditation/relaxation cards that encourage mental well-being. Each card should contain a mental health tip, mindfulness exercise, or self-care practice.
 `;
 
 export async function POST(req) {
@@ -59,42 +59,27 @@ export async function POST(req) {
 
   try {
     const data = await req.json();
-
-    // Log incoming request data for debugging
-    console.log('Request Data:', data);
+    console.log('Request Data:', data); // Log request data for debugging
 
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: systemPrompt }, 
-        ...data.messages // Ensure this is properly structured
+        { role: "system", content: systemPrompt },
+        { role: "user", content: data.prompt }, // Adjust based on your request structure
       ],
-      model: "openai/gpt-3.5-turbo",
-      stream: true,
+      model: "gpt-3.5-turbo",
+      stream: false, // Disable streaming for simplicity
     });
 
-    const stream = new ReadableStream({
-      async start(controller) {
-        const encoder = new TextEncoder();
-        try {
-          for await (const chunk of completion) {
-            const content = chunk.choices[0]?.delta?.content;
-            if (content) {
-              const text = encoder.encode(content);
-              controller.enqueue(text);
-            }
-          }
-        } catch (err) {
-          console.error('Streaming Error:', err);
-          controller.error(err);
-        } finally {
-          controller.close();
-        }
-      },
-    });
+    // Log completion response for debugging
+    console.log('Completion Response:', completion);
 
-    return new NextResponse(stream);
+    // Assuming completion.choices is an array with a text response
+    const titles = completion.choices.map(choice => choice.message.content.trim());
+    
+    return NextResponse.json({ titles });
   } catch (error) {
     console.error('API Route Error:', error);
     return new NextResponse('Error processing request', { status: 500 });
   }
 }
+

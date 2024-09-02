@@ -135,6 +135,35 @@ export default function Plan() {
   const [titles, setTitles] = useState(["Loading Practices...", "Loading Meditation...", "Loading Happiness..."]);
 
   // const generateCardTitles = () => {
+    // useEffect(() => {
+    //   const fetchTitles = async () => {
+    //     try {
+    //       const response = await fetch('/api/generate_cards', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //           prompt: 'Generate 3 creative titles for meditation/relaxation cards that encourage mental well-being.',
+    //         }),
+    //       });
+    
+    //       if (!response.ok) {
+    //         throw new Error(`HTTP error! status: ${response.status}`);
+    //       }
+    
+    //       const data = await response.json();
+    //       console.log('Data received:', data); // Log data to verify
+    //       setTitles(data.titles || ["Error", "Error", "Error"]); // Ensure titles are set properly
+    //     } catch (error) {
+    //       console.error('Error fetching titles:', error);
+    //       setTitles(["Error", "Error", "Error"]); // Fallback in case of error
+    //     }
+    //   };
+    
+    //   fetchTitles();
+    // }, []);
+
     useEffect(() => {
       const fetchTitles = async () => {
         try {
@@ -147,11 +176,11 @@ export default function Plan() {
               prompt: 'Generate 3 creative titles for meditation/relaxation cards that encourage mental well-being.',
             }),
           });
-    
+  
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-    
+  
           const data = await response.json();
           console.log('Data received:', data); // Log data to verify
           setTitles(data.titles); // Assuming the API returns a JSON object with a 'titles' array
@@ -160,7 +189,7 @@ export default function Plan() {
           setTitles(["Error", "Error", "Error"]); // Fallback in case of error
         }
       };
-    
+  
       fetchTitles();
     }, []);
     
@@ -472,6 +501,37 @@ export default function Plan() {
           alignItems="center"
         >
           <div position="relative" className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-white w-full gap-4 mx-auto px-8 rounded-md">
+            <Card title={titles} icon={<AceternityIcon />}>
+              <CanvasRevealEffect
+                animationSpeed={2.5}
+                containerClassName="bg-emerald-900"
+                dotSize={1}
+              />
+            </Card>
+            <Card title={titles} icon={<AceternityIcon />}>
+              <CanvasRevealEffect
+                animationSpeed={2.5}
+                containerClassName="bg-sky-600"
+                colors={[[125, 211, 252]]}
+                dotSize={2}
+              />
+              {/* Radial gradient for the cute fade */}
+              <div position="relative" className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
+            </Card>
+            <Card title={titles} icon={<AceternityIcon />}>
+              <CanvasRevealEffect
+                animationSpeed={2.5}
+                containerClassName="bg-zinc-900"
+                colors={[
+                  [236, 72, 153],
+                  [232, 121, 249],
+                ]}
+                dotSize={3}
+              />
+            </Card>
+          </div>
+
+          <div className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-white w-full gap-4 mx-auto px-8 rounded-md">
             <Card title={titles[0]} icon={<AceternityIcon />}>
               <CanvasRevealEffect
                 animationSpeed={2.5}
@@ -486,8 +546,7 @@ export default function Plan() {
                 colors={[[125, 211, 252]]}
                 dotSize={2}
               />
-              {/* Radial gradient for the cute fade */}
-              <div position="relative" className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
+              <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
             <Card title={titles[2]} icon={<AceternityIcon />}>
               <CanvasRevealEffect
@@ -501,6 +560,7 @@ export default function Plan() {
               />
             </Card>
           </div>
+
         </Box>
       </Grid>
     </Box>
