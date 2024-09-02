@@ -1,13 +1,33 @@
-'use client';
+"use client";
 
 import "./globals.css";
 
 import Head from "next/head";
 import Image from "next/image";
-import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
-import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card } from "@mui/material";
-import Divider from '@mui/material/Divider';
-import { createTheme } from '@mui/material/styles';
+import {
+  SignedIn,
+  SignedOut,
+  isSignedIn,
+  user,
+  useUser,
+  UserButton,
+} from "@clerk/nextjs";
+import { useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Button,
+  Container,
+  Typography,
+  Grid,
+  Card,
+  TextField,
+} from "@mui/material";
+import Divider from "@mui/material/Divider";
+import { createTheme } from "@mui/material/styles";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import db from "@/firebase";
 
 import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
@@ -21,30 +41,30 @@ import { Jost } from "next/font/google";
 import Link from "next/link";
 
 const jost = Jost({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Jost !important',
-    fontWeightLight: 100, 
-    fontWeightRegular: 300, 
-    fontWeightMedium: 400, 
-    fontWeightBold: 500, 
+    fontFamily: "Jost !important",
+    fontWeightLight: 100,
+    fontWeightRegular: 300,
+    fontWeightMedium: 400,
+    fontWeightBold: 500,
   },
   palette: {
     primary: {
-      light: '#403838',
-      main: '#181818',
-      dark: '#0E0D0D',
-      contrastText: '#ffffff',
+      light: "#403838",
+      main: "#181818",
+      dark: "#0E0D0D",
+      contrastText: "#ffffff",
     },
     secondary: {
-      light: '#A559D2',
-      main: '#7714B0',
-      dark: '#5B0B89',
-      contrastText: '#F6F4DC',
+      light: "#A559D2",
+      main: "#7714B0",
+      dark: "#5B0B89",
+      contrastText: "#F6F4DC",
     },
   },
 });
@@ -122,10 +142,22 @@ export const pricingCards = [
   },
 ];
 
-
-
 export default function Home() {
   const { isLoading, isSignedIn, user } = useUser();
+  const [email, setEmail] = useState("");
+
+  // Create a function that stores the user's email in Firestore
+  const addEmail = async (email) => {
+    try {
+      const docRef = await addDoc(collection(db, "waitlist"), {
+        email: email,
+        timestamp: new Date(),
+      });
+      console.log("Email added to Firestore with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
 
     // Use a fallback UI for the initial render to ensure consistency
     if (typeof window === "undefined") {
@@ -145,8 +177,15 @@ export default function Home() {
 
       <AppBar position="sticky" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
         <Toolbar>
-          <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
-              <Image src="/moon.svg" alt="logo" width="20" height="20" />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              filter: "invert(1)",
+              mr: 1.25,
+            }}
+          >
+            <Image src="/moon.svg" alt="logo" width="20" height="20" />
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
@@ -156,13 +195,39 @@ export default function Home() {
             <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
             <Button color="inherit" href="contact" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>contact</Button>
           </Box>
-          
+
           <SignedOut>
-            <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign in</Button>
-            <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign up</Button>
+            <Button
+              color="inherit"
+              href="sign-in"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              {" "}
+              sign in
+            </Button>
+            <Button
+              color="inherit"
+              href="sign-up"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              {" "}
+              sign up
+            </Button>
           </SignedOut>
-          <SignedIn style={{zIndex: 10000}}>
-            <UserButton style={{zIndex: 10000}}/>
+          <SignedIn style={{ zIndex: 10000 }}>
+            <UserButton style={{ zIndex: 10000 }} />
           </SignedIn>
         </Toolbar>
       </AppBar>
@@ -172,16 +237,21 @@ export default function Home() {
 
       {/* Hero Statement */}
       <Grid margin={10}>
+        <HoverBorderGradient
+          containerClassName="rounded-full"
+          as="button"
+          className="text-white flex items-center space-x-4"
+        >
+          <span>Introducing New AI Technology</span>
+        </HoverBorderGradient>
 
-      <HoverBorderGradient
-        containerClassName="rounded-full"
-        as="button"
-        className="text-white flex items-center space-x-4"
-      >
-        <span>Introducing New AI Technology</span>
-      </HoverBorderGradient>
-
-        <Box sx={{color: theme.palette.primary.contrastText, padding: 0, margin: 0}}>
+        <Box
+          sx={{
+            color: theme.palette.primary.contrastText,
+            padding: 0,
+            margin: 0,
+          }}
+        >
           <HeroHighlight>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -193,6 +263,12 @@ export default function Home() {
               <Highlight className="text-white dark:text-white">life changing</Highlight> <br />
               difference with<br />
               your health
+              Make a{" "}
+              <Highlight className="text-white dark:text-white">
+                life changing
+              </Highlight>{" "}
+              <br /> difference with
+              <br /> your health
             </motion.h1>
           </HeroHighlight>
 
@@ -200,7 +276,15 @@ export default function Home() {
           <Typography variant="h7">Our AI-driven mental health support is here to provide a lifeline, offering<br /> understanding, compassion, and guidance when you need it most.<br /></Typography>
         </Box>
 
-        <Box marginTop={2} sx={{ display: 'flex', alignItems: 'left', justifyContent: 'left', gap: 2 }}>
+        <Box
+          marginTop={2}
+          sx={{
+            display: "flex",
+            alignItems: "left",
+            justifyContent: "left",
+            gap: 2,
+          }}
+        >
           <HoverBorderGradient
             containerClassName="rounded-full"
             as="button"
@@ -224,57 +308,205 @@ export default function Home() {
 
       {/* Waitlist Component will go here */}
       <Grid margin={10}>
-        <Typography variant="h4" color={theme.palette.secondary.contrastText} sx={{position: "flex", alignContent: "center", justifyContent: "center"}}>Join the Waitlist</Typography>
-        {/* waitlist shit will go here */}
+        <Typography
+          variant="h4"
+          color={theme.palette.secondary.contrastText}
+          sx={{
+            position: "flex",
+            alignContent: "center",
+            justifyContent: "center",
+          }}
+        >
+          Join the Waitlist
+        </Typography>
+
+        <TextField
+          label="Email"
+          variant="outlined"
+          onChange={(e) => setEmail(e.target.value)}
+          sx={{
+            width: "50%",
+            margin: "left",
+            display: "flex",
+            justifyContent: "center",
+            mt: 3,
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "white", // Default border color
+                borderRadius: "50px",
+              },
+              "&:hover fieldset": {
+                borderColor: "white", // Hover border color
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "white", // Focused border color
+              },
+              "& input": {
+                color: "white",
+                fontFamily: jost.style.fontFamily,
+              },
+            },
+          }}
+          InputLabelProps={{
+            style: { color: "white" },
+            fontFamily: jost.style.fontFamily,
+          }}
+        />
+
+        <Box sx={{ mt: 2 }}>
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="text-white flex items-center space-x-4"
+            onClick={() => addEmail(email)}
+          >
+            Submit
+          </HoverBorderGradient>
+        </Box>
       </Grid>
 
       {/* Features Section */}
       <Grid margin={10} spacing={10} gap="15" ml="10">
-        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Features</Typography>
+        <Typography variant="h4" color={theme.palette.secondary.contrastText}>
+          Features
+        </Typography>
         <StickyScroll content={content} />
       </Grid>
 
       {/* Pricing Card Preview */}
       <Grid margin={10} spacing={10} gap="15" ml="10">
-        <Typography variant="h4" color={theme.palette.secondary.contrastText}>Pricing</Typography>
-        <HoverEffect items={pricingCards} sx={{color: theme.palette.secondary.contrastText, backgroundColor: theme.palette.primary.dark}}/>
+        <Typography variant="h4" color={theme.palette.secondary.contrastText}>
+          Pricing
+        </Typography>
+        <HoverEffect
+          items={pricingCards}
+          sx={{
+            color: theme.palette.secondary.contrastText,
+            backgroundColor: theme.palette.primary.dark,
+          }}
+        />
       </Grid>
 
       {/* need to work on foot to match the styling on figma */}
       <footer>
-        <Divider variant="middle" sx={{ backgroundColor: 'white' }} />
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', color: theme.palette.secondary.contrastText }}>
-          
+        <Divider variant="middle" sx={{ backgroundColor: "white" }} />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "8px",
+            color: theme.palette.secondary.contrastText,
+          }}
+        >
           {/* Logo Section */}
-          <Box sx={{ display: 'column', alignItems: 'center', filter: 'invert(1)', mr:"2" }} margin={10}> 
-            <Image src="/moon.svg" alt="logo" width="20" height="20" sx={{mr:"2"}} />
-            <Typography variant="h6" sx={{fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2, filter: "invert(1)" }}>mindjourney</Typography>
+          <Box
+            sx={{
+              display: "column",
+              alignItems: "center",
+              filter: "invert(1)",
+              mr: "2",
+            }}
+            margin={10}
+          >
+            <Image
+              src="/moon.svg"
+              alt="logo"
+              width="20"
+              height="20"
+              sx={{ mr: "2" }}
+            />
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightBold,
+                mr: 2,
+                filter: "invert(1)",
+              }}
+            >
+              mindjourney
+            </Typography>
 
             {/* Description Section */}
             <Box marginBottom={2}>
-              <Typography variant="body1" sx={{ fontFamily: jost.style.fontFamily, fontWeight: 'regular', textAlign: 'center', color: "black" }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: jost.style.fontFamily,
+                  fontWeight: "regular",
+                  textAlign: "center",
+                  color: "black",
+                }}
+              >
                 formed by a group of college kids trying to make it through life
               </Typography>
             </Box>
 
             {/* Social Links Section */}
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', filter: "invert(1)" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                filter: "invert(1)",
+              }}
+            >
               {[
-                { name: ' ryan tran', url: 'https://www.linkedin.com/in/ryantren/' },
-                { name: ' mason moses', url: 'https://www.linkedin.com/in/mason-moses/' },
-                { name: ' jeremiah dawson', url: 'https://www.linkedin.com/in/jeremiah-dawson-2644982a2/' },
-                { name: ' nabit karowadia', url: 'https://www.linkedin.com/in/nabit-karowadia-848376224/' }
-              ].map(link => (
-                <Link key={link.name} color="inherit" href={link.url} sx={{color: theme.palette.secondary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: 'light', textTransform: 'none', marginBottom: 1, display: 'flex', alignItems: 'center' }}>
-                  <Image src="/linkedin.svg" alt="logo" width="18" height="18" style={{ marginRight: '8px', filter: "invert(1)" }} />
+                {
+                  name: " ryan tran",
+                  url: "https://www.linkedin.com/in/ryantren/",
+                },
+                {
+                  name: " mason moses",
+                  url: "https://www.linkedin.com/in/mason-moses/",
+                },
+                {
+                  name: " jeremiah dawson",
+                  url: "https://www.linkedin.com/in/jeremiah-dawson-2644982a2/",
+                },
+                {
+                  name: " nabit karowadia",
+                  url: "https://www.linkedin.com/in/nabit-karowadia-848376224/",
+                },
+              ].map((link) => (
+                <Link
+                  key={link.name}
+                  color="inherit"
+                  href={link.url}
+                  sx={{
+                    color: theme.palette.secondary.contrastText,
+                    fontFamily: jost.style.fontFamily,
+                    fontWeight: "light",
+                    textTransform: "none",
+                    marginBottom: 1,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    src="/linkedin.svg"
+                    alt="logo"
+                    width="18"
+                    height="18"
+                    style={{ marginRight: "8px", filter: "invert(1)" }}
+                  />
                   {link.name}
                 </Link>
               ))}
             </Box>
           </Box>
-          
+
           {/* Navigation Links Section */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginRight: 10, gap: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              marginRight: 10,
+              gap: 2,
+            }}
+          >
             {[
               { name: 'features', path: 'http://localhost:3000/features' },
               { name: 'pricing', path: 'http://localhost:3000/pricing' },
@@ -288,7 +520,6 @@ export default function Home() {
           </Box>
         </Box>
       </footer>
-
     </Container>
   );
 }
