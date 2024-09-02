@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
 const systemPrompt = `
-Generate a creative practice for meditation/relaxation that encourage mental well-being. 3 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet
+Generate a creative practice for meditation/relaxation that encourage mental well-being. 2 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet
 `;
 
 export async function POST(req) {

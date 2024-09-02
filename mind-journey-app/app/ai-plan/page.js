@@ -134,21 +134,21 @@ export default function Plan() {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 3 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
+                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 2 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
               }),
             }),
             fetch('/api/generate_cards', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 3 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
+                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 2 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
               }),
             }),
             fetch('/api/generate_cards', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 3 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
+                prompt: 'Generate a creative practice for meditation/relaxation that encourage mental well-being. 2 sentences max and just give descriptions and explanations no need for labeling. Nice short and sweet',
               }),
             }),
           ]);
@@ -374,6 +374,31 @@ export default function Plan() {
           AI-Powered Mental Health Planning
         </Typography>
 
+        <Typography
+          variant="h5"
+          sx={{
+            color: "white",
+            marginBottom: {
+              xs: '4vh',  // Larger margin for extra small screens
+              sm: '5vh',  // Larger margin for small screens
+              md: '6vh',  // Even larger margin for medium screens
+              lg: '7vh',  // Larger margin for large screens
+              xl: '8vh'   // Maximum margin for extra large screens
+            },
+            fontSize: {
+              xs: '0.75rem', // Smaller font size for extra small screens
+              sm: '0.9rem', // Slightly larger font size for small screens
+              md: '1rem', // Default font size for medium screens
+              lg: '1.25rem',  // Larger font size for large screens
+              xl: '1.5rem' // Largest font size for extra large screens
+            },
+            textAlign: "center",
+          }}
+          className={jost.className}
+        >
+          Immerse yourself in tranquility by practicing mindful breathing<br /> and imagining a peaceful natural setting. This technique helps<br /> to calm the mind and enhance emotional well-being by anchoring<br /> you to the here and now.
+        </Typography>
+
 
         <Stack
         sx = {{
@@ -508,7 +533,32 @@ export default function Plan() {
     }}
     className={jost.className}
   >
-    AI-Generated Meditation and Practice Cards
+    AI-Generated Meditation Cards
+  </Typography>
+
+  <Typography
+    variant="h5"
+    sx={{
+      color: "black",
+      marginBottom: {
+        xs: '4vh',  // Larger margin for extra small screens
+        sm: '5vh',  // Larger margin for small screens
+        md: '6vh',  // Even larger margin for medium screens
+        lg: '7vh',  // Larger margin for large screens
+        xl: '8vh'   // Maximum margin for extra large screens
+      },
+      fontSize: {
+        xs: '0.75rem', // Smaller font size for extra small screens
+        sm: '0.9rem', // Slightly larger font size for small screens
+        md: '1rem', // Default font size for medium screens
+        lg: '1.25rem',  // Larger font size for large screens
+        xl: '1.5rem' // Largest font size for extra large screens
+      },
+      textAlign: "center",
+    }}
+    className={jost.className}
+  >
+    Experience serenity by focusing on gentle, rhythmic breathing while visualizing<br /> a calming scene of nature. This practice fosters mental relaxation and promotes<br /> overall well-being by grounding you in the present moment.
   </Typography>
 
   <Box
