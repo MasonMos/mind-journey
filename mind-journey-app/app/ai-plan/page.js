@@ -132,13 +132,13 @@ export const Icon = ({ className, ...rest }) => {
 export default function Plan() {
   const { isLoading, isSignedIn, user } = useUser();
   const [membership, setMembership] = useState("Free")
-  const [titles, setTitles] = useState(["Loading...", "Loading...", "Loading..."]);
+  const [titles, setTitles] = useState(["Loading Practices...", "Loading Meditation...", "Loading Happiness..."]);
 
   // const generateCardTitles = () => {
     useEffect(() => {
       const fetchTitles = async () => {
         try {
-          const response = await fetch('/api/generate-titles', {
+          const response = await fetch('/api/generate_cards', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -482,11 +482,8 @@ export default function Plan() {
             <Card title={titles[1]} icon={<AceternityIcon />}>
               <CanvasRevealEffect
                 animationSpeed={2.5}
-                containerClassName="bg-zinc-900"
-                colors={[
-                  [236, 72, 153],
-                  [232, 121, 249],
-                ]}
+                containerClassName="bg-sky-600"
+                colors={[[125, 211, 252]]}
                 dotSize={2}
               />
               {/* Radial gradient for the cute fade */}
@@ -495,8 +492,11 @@ export default function Plan() {
             <Card title={titles[2]} icon={<AceternityIcon />}>
               <CanvasRevealEffect
                 animationSpeed={2.5}
-                containerClassName="bg-sky-600"
-                colors={[[125, 211, 252]]}
+                containerClassName="bg-zinc-900"
+                colors={[
+                  [236, 72, 153],
+                  [232, 121, 249],
+                ]}
                 dotSize={3}
               />
             </Card>
