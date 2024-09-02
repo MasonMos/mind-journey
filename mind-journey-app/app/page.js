@@ -27,7 +27,7 @@ import {
 import Divider from "@mui/material/Divider";
 import { createTheme } from "@mui/material/styles";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import { db } from "@/firebase";
+import db from "@/firebase";
 
 import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"; //acternity sticky scroll reveal
