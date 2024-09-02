@@ -26,7 +26,7 @@ import {
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { createTheme } from "@mui/material/styles";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import db from "@/firebase";
 
 import { HoverEffect } from "@/components/ui/card-hover-effect"; //acternity card hover effect
@@ -149,13 +149,27 @@ export default function Home() {
   // Create a function that stores the user's email in Firestore
   const addEmail = async (email) => {
     try {
+      // Check if the email already exists in Firestore
+      const querySnapshot = await getDocs(
+        query(collection(db, "waitlist"), where("email", "==", email))
+      );
+  
+      if (!querySnapshot.empty) {
+        // Email already exists
+        window.alert("This email is already on the waitlist.");
+        return;
+      }
+  
+      // Add the email to Firestore
       const docRef = await addDoc(collection(db, "waitlist"), {
         email: email,
         timestamp: new Date(),
       });
       console.log("Email added to Firestore with ID: ", docRef.id);
+      window.alert("You have successfully joined the waitlist!");
     } catch (error) {
       console.error("Error adding document: ", error);
+      window.alert("Error adding you to the waitlist!");
     }
   };
 
