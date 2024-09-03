@@ -15,6 +15,7 @@ import { Input } from "postcss";
 import { getDocs, query, collection, setDoc, doc, getDoc } from "firebase/firestore";
 import Pagination from '@mui/material/Pagination';
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -224,28 +225,126 @@ export default function FeedPage(){
 
     return(
         <Box maxWidth="100vw" style={{padding: 0}} className={jost.className} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-            <AppBar position="static" sx={{backgroundColor: theme.palette.primary.main, color:theme.palette.primary.contrastText}}>
-                <Toolbar>
-                <Box sx={{ display: 'flex', alignItems: 'center', filter: 'invert(1)', mr: 1.25 }}>
-                    <Image src="/moon.svg" alt="logo" width="20" height="20" />
-                </Box>
+            <AppBar
+        position="sticky"
+        sx={{
+          backgroundColor: "#181818",
+          color: theme.palette.primary.contrastText,
+        }}
+      >
+        <Toolbar>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              filter: "invert(1)",
+              mr: 1.25,
+            }}
+          >
+            <Image src="/moon.svg" alt="logo" width="20" height="20" />
+          </Box>
 
-                <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                    <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightBold, mr: 2 }}>mindjourney</Typography>
-                    <Typography variant="h6" sx={{color:theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightLight, ml: 1, mr: 2 }}>|</Typography>
-                    <Button color="inherit" href="features" sx={{color: theme.palette.primary.contrastText,fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>features</Button>
-                    <Button color="inherit" href="pricing" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}>pricing</Button>
-                </Box>
-                
-                <SignedOut>
-                    <Button color="inherit" href="sign-in" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign in</Button>
-                    <Button color="inherit" href="sign-up" sx={{color: theme.palette.primary.contrastText, fontFamily: jost.style.fontFamily, fontWeight: theme.typography.fontWeightRegular, textTransform: 'none'}} style={{zIndex: 10000}}> sign up</Button>
-                </SignedOut>
-                <SignedIn style={{zIndex: 10000}}>
-                    <UserButton style={{zIndex: 10000}}/>
-                </SignedIn>
-                </Toolbar>
-            </AppBar>
+          <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
+            <Link
+              variant="h6"
+              href="/"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightBold,
+                mr: 2,
+              }}
+            >
+              mindjourney
+            </Link>
+            <Typography
+              variant="h6"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightLight,
+                ml: 1,
+                mr: 2,
+              }}
+            >
+              |
+            </Typography>
+            <Button
+              color="inherit"
+              href="features"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              features
+            </Button>
+            <Button
+              color="inherit"
+              href="pricing"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              pricing
+            </Button>
+            <Button
+              color="inherit"
+              href="contact"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              contact
+            </Button>
+          </Box>
+
+          <SignedOut>
+            <Button
+              color="inherit"
+              href="sign-in"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              {" "}
+              sign in
+            </Button>
+            <Button
+              color="inherit"
+              href="sign-up"
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+                textTransform: "none",
+              }}
+              style={{ zIndex: 10000 }}
+            >
+              {" "}
+              sign up
+            </Button>
+          </SignedOut>
+          <SignedIn style={{ zIndex: 10000 }}>
+            <UserButton style={{ zIndex: 10000 }} />
+          </SignedIn>
+        </Toolbar>
+      </AppBar>
             
             <Box width="50%" height="200px" sx={{mt: 3}}>
                 <div style={{height: "100%"}}>
