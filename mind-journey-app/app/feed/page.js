@@ -1,4 +1,5 @@
 'use client'
+import "../other.css";
 import Image from "next/image";
 import {React, useState, useEffect } from "react";
 import { createTheme } from '@mui/material/styles';
@@ -7,9 +8,9 @@ import Paper from '@mui/material/Paper';
 import { Jost } from "next/font/google";
 import { SignedIn, SignedOut, isSignedIn, user, useUser, UserButton } from "@clerk/nextjs";
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card, Modal, TextField } from "@mui/material";
-import { BorderButton } from "../../components/ui/moving-border";
-import { LayoutGrid } from "../../components/ui/layout-grid";
-import { AuroraBackground } from "../../components/ui/aurora-background";
+import { BorderButton } from "@/components/ui/moving-border";
+import { LayoutGrid } from "@/components/ui/layout-grid";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import {firestore} from '@/firebase';
 import { Input } from "postcss";
 import { getDocs, query, collection, setDoc, doc, getDoc } from "firebase/firestore";

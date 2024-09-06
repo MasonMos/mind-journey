@@ -32,6 +32,8 @@ import { Jost } from "next/font/google";
 import Link from "next/link";
 import ContactForm from "../contact/contactForm";
 import { useForm, ValidationError } from "@formspree/react";
+import { BorderButton } from "@/components/ui/moving-border";
+
 
 const jost = Jost({
   subsets: ["latin"],
@@ -394,6 +396,7 @@ export default function Home() {
             >
               mindjourney
             </Typography>
+            
 
             {/* Description Section */}
             <Box marginBottom={2}>
