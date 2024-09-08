@@ -37,7 +37,7 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 
-import {firestore} from '@/firebase';
+import { firestore } from "@/firebase";
 
 import { Jost } from "next/font/google";
 import Link from "next/link";
@@ -150,6 +150,20 @@ export default function Home() {
   const { isLoading, isSignedIn, user } = useUser();
   const [email, setEmail] = useState("");
 
+  const addUser = async () => {
+    if (isSignedIn) {
+      console.log("Signed in");
+      const docRef = doc(firestore, "users", user.id);
+      await setDoc(docRef, {}, { merge: true });
+    } else {
+      console.log("Not signed in");
+    }
+  };
+
+  useEffect(() => {
+    addUser();
+  }, [isSignedIn]);
+
   // Create a function that stores the user's email in Firestore
   const addEmail = async (email) => {
     try {
@@ -185,23 +199,6 @@ export default function Home() {
   if (isLoading) {
     return <div>Loading...</div>; // client-side loading state
   }
-
-  const addUser = async() => {
-
-    if(isSignedIn)
-    {
-      console.log("Signed in")
-      const docRef = doc(firestore, 'users', user.id)
-      await setDoc(docRef, {}, {merge: true})
-    }
-    else{
-      console.log("Not signed in")
-    }
-  }
-
-  useEffect(() => {
-    addUser()
-  }, [isSignedIn])
 
   return (
     <Container
