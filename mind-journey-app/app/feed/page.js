@@ -427,6 +427,31 @@ export default function FeedPage() {
             />
           </div>
         </motion.div>
+
+        <Box
+          component={Link}
+          href="/journal"
+          position="absolute"
+          top="-5%"
+          right="0%"
+          sx={{
+            transform: "translateY(-50%)",
+            bgcolor: "rgba(0, 0, 0, 0.5)",
+            color: "white",
+            padding: "16px",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontFamily: jost.style.fontFamily,
+            fontWeight: theme.typography.fontWeightBold,
+            fontSize: "24px",
+            textAlign: "center",
+            "&:hover": {
+              bgcolor: "rgba(0, 0, 0, 0.7)",
+            },
+          }}
+        >
+          Go to Your Journal
+        </Box>
       </AuroraBackground>
 
       <Modal open={open} onClose={handleClose}>

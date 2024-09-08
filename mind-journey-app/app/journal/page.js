@@ -204,6 +204,8 @@ export default function Home() {
               href="/features"
               sx={{
                 color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
                 textTransform: "none",
               }}
             >
@@ -214,6 +216,8 @@ export default function Home() {
               href="/pricing"
               sx={{
                 color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
                 textTransform: "none",
               }}
             >
@@ -224,6 +228,8 @@ export default function Home() {
               href="/contact"
               sx={{
                 color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
                 textTransform: "none",
               }}
             >
@@ -235,14 +241,22 @@ export default function Home() {
             <Button
               color="inherit"
               href="/sign-in"
-              sx={{ color: theme.palette.primary.contrastText }}
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+              }}
             >
               sign in
             </Button>
             <Button
               color="inherit"
               href="/sign-up"
-              sx={{ color: theme.palette.primary.contrastText }}
+              sx={{
+                color: theme.palette.primary.contrastText,
+                fontFamily: jost.style.fontFamily,
+                fontWeight: theme.typography.fontWeightRegular,
+              }}
             >
               sign up
             </Button>
