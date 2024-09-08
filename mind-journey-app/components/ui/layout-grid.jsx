@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AppBar, Toolbar, Box, Button, Container, Typography, Grid, Card, Modal, TextField, Stack } from "@mui/material";
 import {firestore} from '@/firebase';
-import { getDocs, query, collection, setDoc, doc, getDoc, exists, deleteDoc } from "firebase/firestore";
+import { getDocs, query, collection, setDoc, doc, getDoc, exists, deleteDoc, Timestamp } from "firebase/firestore";
 
 
 
@@ -39,11 +39,11 @@ export const LayoutGrid = ({
 
   const submitPromptResponse = async(index) => {
     const userDocRef = doc(collection(firestore, 'users'), user.id)
-
+    const timestamp = Timestamp.now()
     console.log("Final Response List: ", index)
     const colRef = collection(userDocRef, "submittedEntries")
     const docRef = doc(colRef, cards[index].title)
-    await setDoc(docRef, {content: cards[index].content, response: response}, {merge: true})
+    await setDoc(docRef, {authorResponse: cards[index].content, content: response, title: cards[index].title, createdAt: timestamp }, {merge: true})
   }
 
   const removePrompt = async(prompt) => {

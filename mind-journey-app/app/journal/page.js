@@ -97,9 +97,6 @@ export default function Home() {
         content: journalEntries,
         createdAt: timestamp,
       });
-      //alert("Document successfully written!");
-
-      // Fetch the updated journal entries after adding the new one
       getJournalEntries();
     } catch (e) {
       alert("Error adding document: ", e);
@@ -108,10 +105,19 @@ export default function Home() {
 
   // Fetch all journal entries
   const getJournalEntries = async () => {
-    const q = query(collection(db, "users", user.id, "journal-entries"));
-    const querySnapshot = await getDocs(q);
+    const individualquery = query(
+      collection(db, "users", user.id, "journal-entries")
+    );
+    const individualQuerySnapshot = await getDocs(individualquery);
+    const feedQuery = query(
+      collection(db, "users", user.id, "submittedEntries")
+    );
+    const feedQuerySnapshot = await getDocs(feedQuery);
     const entriesArray = [];
-    querySnapshot.forEach((doc) => {
+    feedQuerySnapshot.forEach((doc) => {
+      entriesArray.push({ id: doc.id, ...doc.data() });
+    });
+    individualQuerySnapshot.forEach((doc) => {
       entriesArray.push({ id: doc.id, ...doc.data() });
     });
     setEntries(entriesArray);
@@ -122,9 +128,11 @@ export default function Home() {
     const userId = user.id || user.uid;
 
     const docUserRef = doc(db, "users", userId, "journal-entries", entryId);
+    const docFeedRef = doc(db, "users", userId, "submittedEntries", entryId);
 
     try {
       await deleteDoc(docUserRef);
+      await deleteDoc(docFeedRef);
       //alert("Journal entry deleted successfully.");
 
       // Refresh entries after deletion
@@ -193,7 +201,7 @@ export default function Home() {
             </Typography>
             <Button
               color="inherit"
-              href="features"
+              href="/features"
               sx={{
                 color: theme.palette.primary.contrastText,
                 textTransform: "none",
@@ -203,7 +211,7 @@ export default function Home() {
             </Button>
             <Button
               color="inherit"
-              href="pricing"
+              href="/pricing"
               sx={{
                 color: theme.palette.primary.contrastText,
                 textTransform: "none",
@@ -213,7 +221,7 @@ export default function Home() {
             </Button>
             <Button
               color="inherit"
-              href="contact"
+              href="/contact"
               sx={{
                 color: theme.palette.primary.contrastText,
                 textTransform: "none",
@@ -226,14 +234,14 @@ export default function Home() {
           <SignedOut>
             <Button
               color="inherit"
-              href="sign-in"
+              href="/sign-in"
               sx={{ color: theme.palette.primary.contrastText }}
             >
               sign in
             </Button>
             <Button
               color="inherit"
-              href="sign-up"
+              href="/sign-up"
               sx={{ color: theme.palette.primary.contrastText }}
             >
               sign up
@@ -378,6 +386,20 @@ export default function Home() {
                 >
                   {entry.title}
                 </Typography>
+
+                {entry.authorResponse ? (
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      fontFamily: jost.style.fontFamily,
+                      fontWeight: theme.typography.fontWeightRegular,
+                      color: "white",
+                    }}
+                  >
+                    {entry.authorResponse}
+                  </Typography>
+                ) : null}
+
                 <Typography
                   variant="body1"
                   sx={{
@@ -401,7 +423,9 @@ export default function Home() {
                     right: 8,
                   }}
                 >
-                  {format(entry.createdAt.toDate(), "MMMM dd, yyyy HH:mm")}{" "}
+                  {entry.createdAt
+                    ? format(entry.createdAt.toDate(), "MMMM dd, yyyy HH:mm")
+                    : "No timestamp available"}
                 </Typography>
                 <IconButton
                   aria-label="delete"

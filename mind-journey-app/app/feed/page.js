@@ -38,6 +38,7 @@ import {
   setDoc,
   doc,
   getDoc,
+  Timestamp,
 } from "firebase/firestore";
 import Pagination from "@mui/material/Pagination";
 import { motion } from "framer-motion";
@@ -162,9 +163,15 @@ export default function FeedPage() {
   };
 
   const createPrompt = async (item) => {
+    const timestamp = Timestamp.now();
     await setDoc(
       doc(collection(firestore, "Entries"), item.title),
-      { content: item.content, user: user.id },
+      {
+        title: item.title,
+        content: item.content,
+        user: user.id,
+        createdAt: timestamp,
+      },
       { merge: true }
     );
     updatePromptList();
